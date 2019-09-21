@@ -8,49 +8,49 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 const AppNavigator = createStackNavigator({
-    Options: {
-      screen: OptionsScreen,
-      navigationOptions:{
-        header: null
-        // headerTitle:'hello'
-      }
-    },
-    Signin: {
-        screen: SignIn, 
-        navigationOptions:{
-          headerStyle: {
-            backgroundColor: '#ff6666',
-          },
-          headerTintColor: '#ffffff',
-        }
-    },
-    Signup:{
-      screen: SignUp,
-      navigationOptions:{
-        headerStyle:{
-          backgroundColor:'#ff6666'
-        },
-        headerTintColor:'#ffffff'
-      }
-    },
-    Information1:{
-      screen: Information1,
-      navigationOptions:{
-        headerStyle:{
-          backgroundColor:'#ff6666'
-        },
-        headerTintColor:'#ffffff'
-      }
-    },
-    GetAppointments:{
-      screen:GetAppointments,
-      navigationOptions:{
-        headerStyle:{
-          backgroundColor:'#ff6666'
-        },
-        headerTintColor:'#ffffff'
-      }
+  Options: {
+    screen: OptionsScreen,
+    navigationOptions: {
+      header: null
+      // headerTitle:'hello'
     }
+  },
+  Signin: {
+    screen: SignIn,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666',
+      },
+      headerTintColor: '#ffffff',
+    }
+  },
+  Signup: {
+    screen: SignUp,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666'
+      },
+      headerTintColor: '#ffffff'
+    }
+  },
+  Information1: {
+    screen: Information1,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666'
+      },
+      headerTintColor: '#ffffff'
+    }
+  },
+  GetAppointments: {
+    screen: GetAppointments,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666'
+      },
+      headerTintColor: '#ffffff'
+    }
+  }
 });
 
 export default createAppContainer(AppNavigator);
