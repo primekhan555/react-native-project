@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import {View, Text, TextInput, StyleSheet,TouchableOpacity, ScrollView} from 'react-native';
 import { voidTypeAnnotation } from '@babel/types';
-import { sync } from 'realpath-native';
 
 export default class SignIn extends Component{
     constructor(props){
