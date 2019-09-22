@@ -141,7 +141,9 @@ export default class Information1 extends Component {
                                             .then((responseStatus) => {
                                                 console.log("this is the response from server" + responseStatus);
                                                 if (responseStatus == 200) {
-                                                    this.props.navigation.navigate('GetAppointments')
+                                                    this.props.navigation.navigate('GetAppointments',{
+                                                        CNIC:this.state.CNIC,
+                                                    })
                                                     // console.log("going to appointment screen")
                                                 }
                                             })

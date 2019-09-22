@@ -108,7 +108,9 @@ export default class SignIn extends Component {
                                                         .then(() => {
                                                             if (this.state.dataSource == this.state.pass) {
                                                                 // consol e.log("going to next screen")
-                                                                this.props.navigation.navigate('GetAppointments')
+                                                                this.props.navigation.navigate('GetAppointments' ,{
+                                                                    CNIC:this.state.nic,
+                                                                })
                                                             }
                                                             else {
                                                                 console.log("password is incorrect")

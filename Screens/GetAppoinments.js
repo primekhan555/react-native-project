@@ -6,7 +6,6 @@ import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
 class FlatListItem extends Component {
 
     render() {
-
         return (
             <View style={{
                 flex: 1,
@@ -67,15 +66,20 @@ class FlatListItem extends Component {
 
 
 export default class GetAppointments extends Component {
+    constructor(props){
+        super(props)
+    }
 
     state = {
         dataSource: [],
         isloading: true,
+        CNIC:this.props.navigation.getParam(CNIC,''),
+        CNIC1:this.props.navigation.getParam(CNIC,''),
 
     };
 
     componentDidMount() {
-        return fetch('https://16e920e5.ngrok.io/api/Hardware/')
+        return fetch('https://badf46da.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -109,8 +113,6 @@ export default class GetAppointments extends Component {
         //     </View>
         //     </View>
 
-
-
         if (this.state.isLoading) {
             return (
                 <View>
@@ -127,7 +129,7 @@ export default class GetAppointments extends Component {
                             const owners = item.owner;
 
                             var ownerId = owners.split('#');
-                            if (ownerId[1] == 2) {
+                            if (ownerId[1] == this.state.CNIC || ownerId[1] == this.state.CNIC1) {
 
                                 return (
 
