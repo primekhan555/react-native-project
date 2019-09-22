@@ -4,13 +4,18 @@ import DatePicker from 'react-native-datepicker'
 import { white, black } from 'ansi-colors';
 
 export default class Information1 extends Component {
+    constructor(props){
+        super(props)
+    }
     state = {
+        CNIC: this.props.navigation.getParam('nic', ''),
+        password: this.props.navigation.getParam('pass',''),
         fullName: '',
         email: '',
         gender: 'Male',
         position: 0,
         choosenIndex: 1,
-        date: "2015-01-01",
+        dateofBirth: '2015-01-01',
         age: '',
     };
 
@@ -73,10 +78,10 @@ export default class Information1 extends Component {
                                 <DatePicker
                                     style={{ width: 210 }}
                                     mode="date"
-                                    date={this.state.date}
+                                    date={this.state.dateofBirth}
                                     placeholder="select date"
                                     format="YYYY-MM-DD"
-                                    minDate="1990-01-01"
+                                    minDate="1980-01-01"
                                     maxDate="2019-01-01"
                                     showIcon={true}
                                     customStyles={{
@@ -91,16 +96,18 @@ export default class Information1 extends Component {
                                         }
                                     }}
                                     onDateChange={(newDate) => {
+                                        var fullDate= newDate.concat("T00:00:00.000Z");
+                                        this.setState({
+                                            dateofBirth:fullDate
+                                        })
                                         var allDate = newDate.split("-");
                                         var intDate = parseInt(allDate[0])
                                         var dateobj = new Date();
                                         var currentYear = dateobj.getFullYear();
                                         allDate = (currentYear - intDate);
                                         this.setState({
-                                            date: newDate,
                                             age: allDate,
                                         })
-                                        console.log(allDate);
                                     }}
                                 />
                             </View>
@@ -108,32 +115,38 @@ export default class Information1 extends Component {
                             <View style={styles.nextOpacityView}>
                                 <TouchableOpacity style={styles.nextOpacity}
                                     onPress={() => {
+                                        let block={
+                                            "$class": "com.org.hello.Patient",
+                                            "nicNum": this.state.CNIC,
+                                            "firstName": this.state.fullName,
+                                            "lastName": this.state.password,
+                                            "address": this.state.email,
+                                            "phoneNum": "03429188353",
+                                            "age": this.state.age,
+                                            "gender": this.state.gender,
+                                            "dateofBirth":this.state.dateofBirth,
+                                            "bloodType":"B_Positive"
+                                        }
 
-                                        fetch('https://16e920e5.ngrok.io/api/Hardware', {
+                                        fetch('https://badf46da.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
                                                 'Content-Type': 'application/json',
                                             },
-                                            body: JSON.stringify({
-                                                "$class": "org.com.kpbird.Hardware",
-                                                "hardwareId": "013",
-                                                "name": "oppo 1",
-                                                "type": "mobile",
-                                                "description": "this is a oppo company mobile",
-                                                "quantity": 10,
-                                                "owner": "resource:org.com.kpbird.Employee#3"
-                                            }),
+                                            body: JSON.stringify(block),
 
                                         })
                                             .then((response) => response.status)
                                             .then((responseStatus) => {
                                                 console.log("this is the response from server" + responseStatus);
                                                 if (responseStatus == 200) {
-                                                    // this.props.navigation.navigate('GetAppointments')
-                                                    console.log("going to appointment screen")
+                                                    this.props.navigation.navigate('GetAppointments')
+                                                    // console.log("going to appointment screen")
                                                 }
                                             })
+                                        // console.log(this.state.dateofBirth); // Hours
+                                        
                                     }}>
                                     <Text style={styles.textnextOpacity}>Next</Text>
                                 </TouchableOpacity>

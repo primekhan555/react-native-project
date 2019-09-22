@@ -87,7 +87,7 @@ export default class SignIn extends Component {
                                     else 
                                     {
                                         console.log("your pattern is matching")
-                                        const url = 'https://16e920e5.ngrok.io/api/Employee/';
+                                        const url = 'https://badf46da.ngrok.io/api/Patient/';
                                         const key = this.state.nic;
                                         const join = url.concat(key);
                                         fetch(join)
@@ -96,18 +96,18 @@ export default class SignIn extends Component {
                                                 if (statusCode == 404) {
                                                     alert("signUp first")
                                                 }
-                                                else if (statusCode == 200) {
+                                                else if (statusCode == 200 || statusCode ==304) {
                                                     fetch(join)
                                                         .then((response) => response.json())
                                                         .then((responseJson) => {
                                                             this.setState({
                                                                 isLoading: false,
-                                                                dataSource: responseJson.firstName,
+                                                                dataSource: responseJson.lastName,
                                                             })
                                                         })
                                                         .then(() => {
                                                             if (this.state.dataSource == this.state.pass) {
-                                                                console.log("going to next screen")
+                                                                // consol e.log("going to next screen")
                                                                 this.props.navigation.navigate('GetAppointments')
                                                             }
                                                             else {

@@ -113,12 +113,21 @@ export default class SignUp extends Component {
                     console.log("your cnic is matching")
                     if (this.state.pass1 == this.state.pass2) {
                       console.log("password confirmed")
+                      const url = 'https://badf46da.ngrok.io/api/Patient/';
+                      const key = this.state.cnic;
+                      const join = url.concat(key);
 
-                      fetch('https://00728f51.ngrok.io/api/Employee/2')
+                      fetch(join)
                         .then((response) => response.status
                         ).then((statusCode) => {
                           if (statusCode == 404) {
-                            this.props.navigation.navigate('Information1')
+                            this.props.navigation.navigate('Information1',{ 
+                              nic:this.state.cnic,
+                              pass:this.state.pass2,
+                             })
+                          }
+                          else if(statusCode ==200){
+                            alert("your CNIC is already registered, please SignIn");
                           }
                         })
                     }
@@ -128,7 +137,6 @@ export default class SignUp extends Component {
                   }
                   else {
                     console.log("your cnic is incorrect")
-                    // this.props.navigation.navigate('Information1')
                   }
                 }
                 }>

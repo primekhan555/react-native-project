@@ -9,6 +9,6 @@ import information1 from './Screens/Information1'
 import GetAppoinments from './Screens/Testing'
 
 
-AppRegistry.registerComponent(appName, () => information1);
+AppRegistry.registerComponent(appName, () => App);
 
 
