@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage} from 'react-native';
 
 export default class OptionsScreen extends Component {
 
     constructor(props) {
         super(props)
+    }
+    componentDidMount() {
+        AsyncStorage.getItem('CNIC', (err, result) => {
+            if (result !== null) {
+                this.props.navigation.navigate('GetAppointments')
+                this.setState({
+                    cnic: result,
+                })
+                
+                console.log("this is the get appointment " + result);
+            }
+        });
     }
     render() {
         return (

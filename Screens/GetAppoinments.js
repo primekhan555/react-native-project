@@ -75,9 +75,7 @@ export default class GetAppointments extends Component {
         dataSource: [],
         isloading: true,
         CNIC:'',
-        // CNIC:this.props.navigation.getParam(cnic111,''),
-        // CNIC1:this.props.navigation.getParam(cnic1,''),
-
+        
     };
 
     componentDidMount() {
@@ -161,24 +159,7 @@ export default class GetAppointments extends Component {
         {/* ) */ }
         
     }
-    _retrieveData() {
-        console.log("function started execution")
-        try {
-            console.log(this.state.CNIC)
-          const value =  AsyncStorage.getItem('CNICS');
-          console.log("hello"+ JSON.stringify(value))
-          console.log(value._55)
-          if (value !== null) {
-             
-            this.setState({
-                CNIC: value,               
-            })
-            alert(JSON.stringify(value));
-          }
-        } catch (error) {
-          console.log("error in retrieving data")
-        }
-      };
+    
 }
 const styles = StyleSheet.create({
     imageStyle: {

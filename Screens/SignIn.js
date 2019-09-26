@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 // import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
@@ -9,18 +9,20 @@ export default class SignIn extends Component {
     constructor(props) {
         super(props)
     }
-    
+
     state = {
         nic: '',
         pass: '',
         isLoading: true,
         dataSource: '',
-        fieldUnderlineColor:'#857777',
-        passEyeState:true,
+        fieldUnderlineColor: '#857777',
+        passEyeState: true,
+        cnic: '',
     };
-    
+
     render() {
         return (
+
             <View style={styles.mainContainer}>
                 <View style={styles.firstContainer}>
                     <Text style={styles.firstContainerText}>Sign In</Text>
@@ -28,7 +30,7 @@ export default class SignIn extends Component {
                 <View style={styles.secondContainer}>
                     <ScrollView>
                         <View style={styles.TextInputView}>
-                        <Text style={{marginStart:25, fontWeight:'bold', fontSize:17}}>CNIC & Password</Text>
+                            <Text style={{ marginStart: 25, fontWeight: 'bold', fontSize: 17 }}>CNIC & Password</Text>
                             <TextInput
                                 style={styles.TextInput}
                                 mode="outlined"
@@ -40,22 +42,22 @@ export default class SignIn extends Component {
                                 onChangeText={(cnic) => {
                                     const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
                                     var pattern = regex.test(cnic);
-                                    if(pattern){
+                                    if (pattern) {
                                         this.setState({
-                                            fieldUnderlineColor:'#137804',
+                                            fieldUnderlineColor: '#137804',
                                             nic: cnic,
                                         })
                                     }
-                                    else{
+                                    else {
                                         this.setState({
-                                            fieldUnderlineColor:'#ff0303',
-                                            nic:'',
+                                            fieldUnderlineColor: '#ff0303',
+                                            nic: '',
                                         })
-                                    } 
+                                    }
                                 }}
                             />
                         </View>
-                        
+
                         <View style={styles.TextInputViewPass}>
                             <TextInput
                                 style={styles.TextInput}
@@ -70,16 +72,16 @@ export default class SignIn extends Component {
                                     })
                                 }}
                             />
-                         
+
                         </View>
                         <View style={styles.buttonView}>
                             <TouchableOpacity
                                 style={styles.opacity}
                                 onPress={() => {
-                                    if(this.state.nic==''){
+                                    if (this.state.nic == '') {
                                         return;
                                     }
-                                    if(this.state.pass==''){
+                                    if (this.state.pass == '') {
                                         return;
                                     }
                                     const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
@@ -87,8 +89,7 @@ export default class SignIn extends Component {
                                     if (!pattern) {
                                         console.log("your nic pattern is not Valid")
                                     }
-                                    else 
-                                    {
+                                    else {
                                         console.log("your pattern is matching")
                                         const url = 'https://7b2933c3.ngrok.io/api/Patient/';
                                         const key = this.state.nic;
@@ -110,13 +111,13 @@ export default class SignIn extends Component {
                                                         })
                                                         .then(() => {
                                                             if (this.state.dataSource == this.state.pass) {
-                                                                let cnic =this.state.nic.toString();
-                                                                AsyncStorage.setItem('CNIC', JSON.stringify(cnic),()=>{
-                                                                this.props.navigation.navigate('GetAppointments' ,{
-                                                                    cnic1:this.state.nic,
+                                                                let cnic = this.state.nic.toString();
+                                                                AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
+                                                                    this.props.navigation.navigate('GetAppointments', {
+                                                                        cnic1: this.state.nic,
+                                                                    })
+                                                                    console.log("i am inside")
                                                                 })
-                                                                console.log("i am inside")
-                                                            })
                                                             }
                                                             else {
                                                                 console.log("password is incorrect")
@@ -127,7 +128,7 @@ export default class SignIn extends Component {
                                                         });
                                                 }
                                             })
-                                        }
+                                    }
                                 }}>
                                 <Text style={styles.buttonText}>Continue</Text>
                             </TouchableOpacity>
@@ -137,14 +138,7 @@ export default class SignIn extends Component {
             </View>
         );
     }
-    // async storeData(){
-    //     try {
-    //       await AsyncStorage.setItem('CNIC', JSON.stringify(this.state.nic));
-    //       console.log(JSON.stringify(this.state.nic));
-    //     } catch (error) {
-    //       // Error saving data
-    //     }
-    //   };
+
 }
 const styles = StyleSheet.create({
     mainContainer: {
@@ -182,7 +176,7 @@ const styles = StyleSheet.create({
         height: 70
     },
     TextInputViewPass: {
-        flex:1,
+        flex: 1,
         marginTop: 30,
         height: 70,
         // flexDirection:'row',
@@ -205,11 +199,11 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         alignItems: 'center'
     },
-    icons:{
-        position:'absolute',
-        right:0,
-        top:33,
-        marginTop:20
-        
+    icons: {
+        position: 'absolute',
+        right: 0,
+        top: 33,
+        marginTop: 20
+
     },
 });
