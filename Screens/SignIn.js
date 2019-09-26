@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
+import {AsyncStorage} from 'react-native';
+// import {TextInput} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
 
@@ -7,7 +9,7 @@ export default class SignIn extends Component {
     constructor(props) {
         super(props)
     }
-
+    
     state = {
         nic: '',
         pass: '',
@@ -15,7 +17,8 @@ export default class SignIn extends Component {
         dataSource: '',
         fieldUnderlineColor:'#857777',
         passEyeState:true,
-    }
+    };
+    
     render() {
         return (
             <View style={styles.mainContainer}>
@@ -28,6 +31,8 @@ export default class SignIn extends Component {
                         <Text style={{marginStart:25, fontWeight:'bold', fontSize:17}}>CNIC & Password</Text>
                             <TextInput
                                 style={styles.TextInput}
+                                mode="outlined"
+                                label="nic"
                                 placeholder=" 16202-0195532-5"
                                 keyboardType="decimal-pad"
                                 placeholderTextColor="#857777"
@@ -46,9 +51,7 @@ export default class SignIn extends Component {
                                             fieldUnderlineColor:'#ff0303',
                                             nic:'',
                                         })
-                                    }
-
-                                    
+                                    } 
                                 }}
                             />
                         </View>
@@ -87,7 +90,7 @@ export default class SignIn extends Component {
                                     else 
                                     {
                                         console.log("your pattern is matching")
-                                        const url = 'https://badf46da.ngrok.io/api/Patient/';
+                                        const url = 'https://7b2933c3.ngrok.io/api/Patient/';
                                         const key = this.state.nic;
                                         const join = url.concat(key);
                                         fetch(join)
@@ -96,7 +99,7 @@ export default class SignIn extends Component {
                                                 if (statusCode == 404) {
                                                     alert("signUp first")
                                                 }
-                                                else if (statusCode == 200 || statusCode ==304) {
+                                                else if (statusCode == 200 || statusCode == 304) {
                                                     fetch(join)
                                                         .then((response) => response.json())
                                                         .then((responseJson) => {
@@ -107,15 +110,17 @@ export default class SignIn extends Component {
                                                         })
                                                         .then(() => {
                                                             if (this.state.dataSource == this.state.pass) {
-                                                                // consol e.log("going to next screen")
+                                                                let cnic =this.state.nic.toString();
+                                                                AsyncStorage.setItem('CNIC', JSON.stringify(cnic),()=>{
                                                                 this.props.navigation.navigate('GetAppointments' ,{
-                                                                    CNIC:this.state.nic,
+                                                                    cnic1:this.state.nic,
                                                                 })
+                                                                console.log("i am inside")
+                                                            })
                                                             }
                                                             else {
                                                                 console.log("password is incorrect")
                                                             }
-
                                                         })
                                                         .catch((error) => {
                                                             console.error(error)
@@ -123,8 +128,6 @@ export default class SignIn extends Component {
                                                 }
                                             })
                                         }
-                                    
-
                                 }}>
                                 <Text style={styles.buttonText}>Continue</Text>
                             </TouchableOpacity>
@@ -134,6 +137,14 @@ export default class SignIn extends Component {
             </View>
         );
     }
+    // async storeData(){
+    //     try {
+    //       await AsyncStorage.setItem('CNIC', JSON.stringify(this.state.nic));
+    //       console.log(JSON.stringify(this.state.nic));
+    //     } catch (error) {
+    //       // Error saving data
+    //     }
+    //   };
 }
 const styles = StyleSheet.create({
     mainContainer: {

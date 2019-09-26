@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
+import {AsyncStorage} from 'react-native';
 import FlatlistData from './FlatListD/FlatlistData';
 import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
 
@@ -38,20 +39,20 @@ class FlatListItem extends Component {
                 <View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Doctor Name :</Text>
-                        <Text style={{ paddingLeft: 5, color: 'white', fontSize: 15, fontWeight: 'bold' }}>{this.props.item.name}</Text>
+                        <Text style={{ paddingLeft: 5, color: 'white', fontSize: 15, fontWeight: 'bold' }}>{this.props.item.doctorName}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Appointment Detail :</Text>
-                        <Text style={{ width: '40%', height: 25, paddingLeft: 5, color: 'white', fontStyle: 'italic' }}>{this.props.item.description}</Text>
+                        <Text style={{ width: '40%', height: 25, paddingLeft: 5, color: 'white', fontStyle: 'italic' }}>{this.props.item.diseaseType}</Text>
                     </View>
                     <View style={{ flexDirection: "row" }}>
                         <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Appointment Date :</Text>
-                        <Text style={{ paddingLeft: 5, color: 'white' }}>{this.props.item.quantity}</Text>
+                        <Text style={{ paddingLeft: 5, color: 'white' }}>{this.props.item.dateVisited}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Age :</Text>
-                            <Text style={{ paddingLeft: 5, color: 'white', fontWeight: 'bold' }}>{this.props.item.hardwareId}</Text>
+                            <Text style={{ paddingLeft: 5, color: 'white', fontWeight: 'bold' }}>{this.props.item.testResult}</Text>
                         </View>
                         <View style={{ marginLeft: 40, flexDirection: 'row' }}>
                             <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Weight :</Text>
@@ -73,23 +74,34 @@ export default class GetAppointments extends Component {
     state = {
         dataSource: [],
         isloading: true,
-        CNIC:this.props.navigation.getParam(CNIC,''),
-        CNIC1:this.props.navigation.getParam(CNIC,''),
+        CNIC:'',
+        // CNIC:this.props.navigation.getParam(cnic111,''),
+        // CNIC1:this.props.navigation.getParam(cnic1,''),
 
     };
 
     componentDidMount() {
-        return fetch('https://badf46da.ngrok.io/api/Disease/')
+        AsyncStorage.getItem('CNIC',(err, result)=>{    
+                     if (result !== null) {
+                        this.setState({
+                            CNIC: result,               
+                        })
+                        console.log("this is the get appointment "+result);
+                      }
+                 });        
+        return fetch('https://7b2933c3.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     dataSource: responseJson,
                     isloading: false
                 })
+               
             })
             .catch((error) => {
                 console.error(error);
             });
+           
     }
     render() {
         // return(
@@ -126,28 +138,47 @@ export default class GetAppointments extends Component {
                     <FlatList
                         data={this.state.dataSource}
                         renderItem={({ item, index }) => {
-                            const owners = item.owner;
-
+                            const owners = item.patient;
                             var ownerId = owners.split('#');
-                            if (ownerId[1] == this.state.CNIC || ownerId[1] == this.state.CNIC1) {
-
+                            console.log(ownerId[1])
+                            console.log(this.state.CNIC) 
+                            var CNICS=this.state.CNIC.replace(/['"]+/g, '') 
+                            console.log(CNICS)                       
+                            if (ownerId[1] == CNICS){ 
+                                console.log("if is executing");
                                 return (
-
-                                    <FlatListItem item={item} index={index}
-                                    />
-                                    // </FlatListItem>
+                                    <FlatListItem item={item} index={index} />
                                 )
                             }
+                            else{
+                                console.log("if is not executing")
+                            }
                         }}
-                        keyExtractor={(item, index) => index} />
-                    {/* </FlatList> */}
+                        keyExtractor={(item, index) => item.toString()} />
                 </View>
-
             )
-
         }
         {/* ) */ }
+        
     }
+    _retrieveData() {
+        console.log("function started execution")
+        try {
+            console.log(this.state.CNIC)
+          const value =  AsyncStorage.getItem('CNICS');
+          console.log("hello"+ JSON.stringify(value))
+          console.log(value._55)
+          if (value !== null) {
+             
+            this.setState({
+                CNIC: value,               
+            })
+            alert(JSON.stringify(value));
+          }
+        } catch (error) {
+          console.log("error in retrieving data")
+        }
+      };
 }
 const styles = StyleSheet.create({
     imageStyle: {

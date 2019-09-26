@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 
+
 export default class SignUp extends Component {
   constructor(props) {
     super(props)
@@ -113,7 +114,7 @@ export default class SignUp extends Component {
                     console.log("your cnic is matching")
                     if (this.state.pass1 == this.state.pass2) {
                       console.log("password confirmed")
-                      const url = 'https://badf46da.ngrok.io/api/Patient/';
+                      const url = 'https://7b2933c3.ngrok.io/api/Patient/';
                       const key = this.state.cnic;
                       const join = url.concat(key);
 
@@ -218,7 +219,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-
-
-

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity, Picker } from 'react-native';
+import {AsyncStorage} from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import { white, black } from 'ansi-colors';
 
@@ -7,6 +8,14 @@ export default class Information1 extends Component {
     constructor(props){
         super(props)
     }
+    _storeCNIC = async ()=>{
+    try {
+        await AsyncStorage.setItem('CNIC', this.state.CNIC);
+        console.log("cnic saved successfully")
+      } catch (error) {
+        console.log("error in saving")
+      }
+    };
     state = {
         CNIC: this.props.navigation.getParam('nic', ''),
         password: this.props.navigation.getParam('pass',''),
@@ -128,7 +137,7 @@ export default class Information1 extends Component {
                                             "bloodType":"B_Positive"
                                         }
 
-                                        fetch('https://badf46da.ngrok.io/api/Patient/', {
+                                        fetch('https://7b2933c3.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
@@ -142,9 +151,11 @@ export default class Information1 extends Component {
                                                 console.log("this is the response from server" + responseStatus);
                                                 if (responseStatus == 200) {
                                                     this.props.navigation.navigate('GetAppointments',{
-                                                        CNIC:this.state.CNIC,
+                                                        cnic:this.state.CNIC,
                                                     })
-                                                    // console.log("going to appointment screen")
+
+                                                    // this._storeCNIC
+                                                    console.log("going to appointment screen")
                                                 }
                                             })
                                         // console.log(this.state.dateofBirth); // Hours
