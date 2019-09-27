@@ -12,7 +12,7 @@ const AppNavigator = createStackNavigator({
     screen: OptionsScreen,
     navigationOptions: {
       header: null
-      // headerTitle:'hello'
+      // headerTitle:'hello world'
     }
   },
   Signin: {

@@ -1,8 +1,5 @@
-
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
-
-
 
 export default class SignUp extends Component {
   constructor(props) {

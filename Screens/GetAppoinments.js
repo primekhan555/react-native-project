@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 import FlatlistData from './FlatListD/FlatlistData';
 import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
 
 class FlatListItem extends Component {
+    state = {
+        control: 'expand',
+        viewHeight: 150,
+        detail: '',
+        height:'',
+        textColor:'',
+    };
 
     render() {
         return (
@@ -13,7 +20,7 @@ class FlatListItem extends Component {
                 flexDirection: "column",
                 marginBottom: 9,
                 marginTop: 1,
-                height: 150,
+                height: this.state.viewHeight,
                 marginLeft: 10,
                 marginRight: 10,
                 borderRadius: 20,
@@ -23,7 +30,7 @@ class FlatListItem extends Component {
             }}
             >
                 <TouchableOpacity onPress={() => {
-                    alert("hello : " + this.props.index);
+                    // alert("hello : " + this.props.index);
                 }}
                     style={{
                         position: 'absolute',
@@ -33,8 +40,29 @@ class FlatListItem extends Component {
                         bottom: 0
                     }}></TouchableOpacity>
 
-                <View style={{ marginTop: 5 }}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 17, textAlign: 'center' }}>Appointment</Text>
+                <View style={{ marginTop: 5, flexDirection: "row", width:150 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 17, textAlign: 'auto' }}>Appointment</Text>
+                    <Text style={{ marginStart: 50, color: 'white', textAlign:'right'}}
+                        onPress={() => {
+                            if (this.state.control == "expand") {
+                                this.setState({
+                                    control: 'condense',
+                                    viewHeight: 280,
+                                    detail: this.props.item.diseaseType,
+                                    height:20,
+                                    
+
+                                })
+                            }
+                            else {
+                                this.setState({
+                                    control: 'expand',
+                                    viewHeight: 150,
+                                    detail:'',
+                                })
+                            }
+                        }}
+                    >{this.state.control}</Text>
                 </View>
                 <View>
                     <View style={{ flexDirection: 'row' }}>
@@ -58,7 +86,14 @@ class FlatListItem extends Component {
                             <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Weight :</Text>
                             <Text style={{ paddingLeft: 5, color: 'white', fontWeight: 'bold' }}>{this.props.item.type}</Text>
                         </View>
+
                     </View>
+                    <View style={{height:this.state.height,}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
                 </View>
             </View>
         );
@@ -67,26 +102,26 @@ class FlatListItem extends Component {
 
 
 export default class GetAppointments extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
     state = {
         dataSource: [],
         isloading: true,
-        CNIC:'',
-        
+        CNIC: '',
+
     };
 
     componentDidMount() {
-        AsyncStorage.getItem('CNIC',(err, result)=>{    
-                     if (result !== null) {
-                        this.setState({
-                            CNIC: result,               
-                        })
-                        console.log("this is the get appointment "+result);
-                      }
-                 });        
+        AsyncStorage.getItem('CNIC', (err, result) => {
+            if (result !== null) {
+                this.setState({
+                    CNIC: result,
+                })
+                console.log("this is the get appointment " + result);
+            }
+        });
         return fetch('https://7b2933c3.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
@@ -94,12 +129,12 @@ export default class GetAppointments extends Component {
                     dataSource: responseJson,
                     isloading: false
                 })
-               
+
             })
             .catch((error) => {
                 console.error(error);
             });
-           
+
     }
     render() {
         // return(
@@ -139,16 +174,16 @@ export default class GetAppointments extends Component {
                             const owners = item.patient;
                             var ownerId = owners.split('#');
                             console.log(ownerId[1])
-                            console.log(this.state.CNIC) 
-                            var CNICS=this.state.CNIC.replace(/['"]+/g, '') 
-                            console.log(CNICS)                       
-                            if (ownerId[1] == CNICS){ 
+                            console.log(this.state.CNIC)
+                            var CNICS = this.state.CNIC.replace(/['"]+/g, '')
+                            console.log(CNICS)
+                            if (ownerId[1] == CNICS) {
                                 console.log("if is executing");
                                 return (
                                     <FlatListItem item={item} index={index} />
                                 )
                             }
-                            else{
+                            else {
                                 console.log("if is not executing")
                             }
                         }}
@@ -157,9 +192,9 @@ export default class GetAppointments extends Component {
             )
         }
         {/* ) */ }
-        
+
     }
-    
+
 }
 const styles = StyleSheet.create({
     imageStyle: {
