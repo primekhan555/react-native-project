@@ -9,12 +9,10 @@ export default class OptionsScreen extends Component {
     componentDidMount() {
         AsyncStorage.getItem('CNIC', (err, result) => {
             if (result !== null) {
-                this.props.navigation.navigate('GetAppointments')
+                this.props.navigation.navigate('TabScreen')
                 this.setState({
                     cnic: result,
                 })
-                
-                console.log("this is the get appointment " + result);
             }
         });
     }

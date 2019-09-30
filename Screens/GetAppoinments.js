@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList,ActivityIndicator, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import FlatlistData from './FlatListD/FlatlistData';
 import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
@@ -12,7 +12,6 @@ class FlatListItem extends Component {
         height:'',
         textColor:'',
     };
-
     render() {
         return (
             <View style={{
@@ -50,8 +49,7 @@ class FlatListItem extends Component {
                                     viewHeight: 280,
                                     detail: this.props.item.diseaseType,
                                     height:20,
-                                    
-
+                                  
                                 })
                             }
                             else {
@@ -88,12 +86,12 @@ class FlatListItem extends Component {
                         </View>
 
                     </View>
-                    <View style={{height:this.state.height,}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    {/* <View style={{height:this.state.height,}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
                     <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
                     <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
                     <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
                     <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
-                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View>
+                    <View style={{height:this.state.height}}><Text style={{color:'#ffffff'}}>{this.state.detail}</Text></View> */}
                 </View>
             </View>
         );
@@ -108,7 +106,7 @@ export default class GetAppointments extends Component {
 
     state = {
         dataSource: [],
-        isloading: true,
+        isloading:true,
         CNIC: '',
 
     };
@@ -158,10 +156,10 @@ export default class GetAppointments extends Component {
         //     </View>
         //     </View>
 
-        if (this.state.isLoading) {
+        if (this.state.isloading) {
             return (
                 <View>
-                    <ActivityIndicator size='large' animating />
+                    <ActivityIndicator size='large' animating={true} />
                 </View>
             )
         }
@@ -180,21 +178,20 @@ export default class GetAppointments extends Component {
                             if (ownerId[1] == CNICS) {
                                 console.log("if is executing");
                                 return (
+                                    // <View></View>
                                     <FlatListItem item={item} index={index} />
-                                )
+                                );
                             }
                             else {
                                 console.log("if is not executing")
                             }
                         }}
-                        keyExtractor={(item, index) => item.toString()} />
+                        keyExtractor={(item, index) => index.toString()} />
                 </View>
             )
         }
         {/* ) */ }
-
     }
-
 }
 const styles = StyleSheet.create({
     imageStyle: {

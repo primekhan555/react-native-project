@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
 import { AsyncStorage } from 'react-native';
-// import {TextInput} from 'react-native-paper';
+
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
 
@@ -33,7 +33,6 @@ export default class SignIn extends Component {
                             <Text style={{ marginStart: 25, fontWeight: 'bold', fontSize: 17 }}>CNIC & Password</Text>
                             <TextInput
                                 style={styles.TextInput}
-                                mode="outlined"
                                 label="nic"
                                 placeholder=" 16202-0195532-5"
                                 keyboardType="decimal-pad"
@@ -113,7 +112,7 @@ export default class SignIn extends Component {
                                                             if (this.state.dataSource == this.state.pass) {
                                                                 let cnic = this.state.nic.toString();
                                                                 AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
-                                                                    this.props.navigation.navigate('GetAppointments', {
+                                                                    this.props.navigation.navigate('TabScreen', {
                                                                         cnic1: this.state.nic,
                                                                     })
                                                                     console.log("i am inside")

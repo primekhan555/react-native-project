@@ -150,12 +150,14 @@ export default class Information1 extends Component {
                                             .then((responseStatus) => {
                                                 console.log("this is the response from server" + responseStatus);
                                                 if (responseStatus == 200) {
-                                                    this.props.navigation.navigate('GetAppointments',{
-                                                        cnic:this.state.CNIC,
+                                                    let cnic = this.state.CNIC.toString();
+                                                    AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
+                                                        this.props.navigation.navigate('TabScreen', {
+                                                            cnic:this.state.CNIC,
+                                                        })
+                                                        console.log("i am inside")
                                                     })
-
-                                                    // this._storeCNIC
-                                                    console.log("going to appointment screen")
+                                                    // console.log("going to appointment screen")
                                                 }
                                             })
                                         // console.log(this.state.dateofBirth); // Hours
