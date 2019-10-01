@@ -6,16 +6,7 @@ export default class OptionsScreen extends Component {
     constructor(props) {
         super(props)
     }
-    componentDidMount() {
-        AsyncStorage.getItem('CNIC', (err, result) => {
-            if (result !== null) {
-                this.props.navigation.navigate('TabScreen')
-                this.setState({
-                    cnic: result,
-                })
-            }
-        });
-    }
+    
     render() {
         return (
             <View style={styles.container}>

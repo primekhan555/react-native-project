@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View,AsyncStorage} from 'react-native';
+import { StyleSheet, View, AsyncStorage} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import base64 from 'react-native-base64'
 

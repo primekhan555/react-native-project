@@ -158,7 +158,7 @@ export default class GetAppointments extends Component {
 
         if (this.state.isloading) {
             return (
-                <View>
+                <View style={{flex:1, justifyContent:'center'}}>
                     <ActivityIndicator size='large' animating={true} />
                 </View>
             )

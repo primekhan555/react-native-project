@@ -83,13 +83,13 @@ export default class SignIn extends Component {
                                     if (this.state.pass == '') {
                                         return;
                                     }
-                                    const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
-                                    var pattern = regex.test(this.state.nic);
-                                    if (!pattern) {
-                                        console.log("your nic pattern is not Valid")
-                                    }
-                                    else {
-                                        console.log("your pattern is matching")
+                                    // const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
+                                    // var pattern = regex.test(this.state.nic);
+                                    // if (!pattern) {
+                                    //     console.log("your nic pattern is not Valid")
+                                    // }
+                                    // else {
+                                        // console.log("your pattern is matching")
                                         const url = 'https://7b2933c3.ngrok.io/api/Patient/';
                                         const key = this.state.nic;
                                         const join = url.concat(key);
@@ -127,7 +127,7 @@ export default class SignIn extends Component {
                                                         });
                                                 }
                                             })
-                                    }
+                                    
                                 }}>
                                 <Text style={styles.buttonText}>Continue</Text>
                             </TouchableOpacity>

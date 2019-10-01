@@ -9,6 +9,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 import GeneratingQRCode from './Screens/GeneratingQRCode';
+import SplashScreen from './Screens/SplashScreen';
 
 //
 const TabScreen = createMaterialTopTabNavigator(
@@ -39,6 +40,12 @@ const TabScreen = createMaterialTopTabNavigator(
 //
 
 const AppNavigator = createStackNavigator({
+  Splash:{
+    screen:SplashScreen,
+    navigationOptions:{
+      header:null,
+    }
+  },
   Options: {
     screen: OptionsScreen,
     navigationOptions: {

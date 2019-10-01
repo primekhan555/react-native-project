@@ -105,10 +105,10 @@ export default class SignUp extends Component {
                     return;
                   }
 
-                  const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
-                  var pattern = regex.test(this.state.cnic);
-                  if (pattern) {
-                    console.log("your cnic is matching")
+                  // const regex = /^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/;
+                  // var pattern = regex.test(this.state.cnic);
+                  // if (pattern) {
+                  //   console.log("your cnic is matching")
                     if (this.state.pass1 == this.state.pass2) {
                       console.log("password confirmed")
                       const url = 'https://7b2933c3.ngrok.io/api/Patient/';
@@ -132,10 +132,10 @@ export default class SignUp extends Component {
                     else {
                       console.log("password is not matching")
                     }
-                  }
-                  else {
-                    console.log("your cnic is incorrect")
-                  }
+                  // }
+                  // else {
+                  //   console.log("your cnic is incorrect")
+                  // }
                 }
                 }>
                 <Text style={styles.buttonText}>Continue</Text>

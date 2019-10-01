@@ -66,7 +66,7 @@ export default class PersonalInfo extends Component{
                     <TouchableOpacity 
                     onPress={()=>{
                         AsyncStorage.removeItem('CNIC');
-                        this.props.navigation.navigate('OptionsScreen');
+                        this.props.navigation.navigate('Options');
                     }}
                     style={{shadowOpacity:.1,borderRadius:10,color:'red',width:100, height:30, backgroundColor:'#ff6666', justifyContent:'center',alignItems:'center'}}>
                         <Text style={{color:'#fff'}}>LogOut</Text>
