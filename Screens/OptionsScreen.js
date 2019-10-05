@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage} from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 
 export default class OptionsScreen extends Component {
 
     constructor(props) {
         super(props)
     }
-    
+
     render() {
         return (
             <View style={styles.container}>

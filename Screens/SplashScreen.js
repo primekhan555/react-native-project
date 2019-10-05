@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
+
 export default class SplashScreen extends Component {
     componentDidMount() {
         AsyncStorage.getItem('CNIC', (err, result) => {
             if (result !== null) {
-                this.props.navigation.navigate('TabScreen');
+                this.props.navigation.navigate('GetAppointments');
                 this.setState({
                     cnic: result,
                 })
@@ -13,13 +14,10 @@ export default class SplashScreen extends Component {
                 this.props.navigation.navigate('Options');
             }
         });
-        
     }
     render() {
-        
         return (
-            
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',  }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ff6666'}}>
                 <View style={styles.container}>
                     <Text style={styles.text}>MediBlock</Text>
                 </View>
@@ -29,17 +27,16 @@ export default class SplashScreen extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#ff6666',
+        backgroundColor: 'white',
         height: 200,
         width: 350,
         borderRadius: 20,
         alignItems:'center',
-        justifyContent:'center'
-
+        justifyContent:'center',
     },
     text:{
-        color:'white',
+        color:'#ff6666',
         fontSize:40,
-        fontWeight:'bold'
+        fontWeight:'bold',
     }
 });

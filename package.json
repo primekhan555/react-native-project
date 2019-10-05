@@ -12,6 +12,7 @@
     "@types/react-native": "^0.60.12",
     "react": "16.8.6",
     "react-native": "0.60.5",
+    "react-native-action-button": "^2.8.5",
     "react-native-base64": "0.0.2",
     "react-native-datepicker": "^1.7.2",
     "react-native-gesture-handler": "^1.4.1",

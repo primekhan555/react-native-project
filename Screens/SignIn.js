@@ -6,6 +6,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
 
 export default class SignIn extends Component {
+    static navigationOptions={
+        headerLeft:null
+    }
     constructor(props) {
         super(props)
     }
@@ -90,7 +93,7 @@ export default class SignIn extends Component {
                                     // }
                                     // else {
                                         // console.log("your pattern is matching")
-                                        const url = 'https://7b2933c3.ngrok.io/api/Patient/';
+                                        const url = 'https://f8f3f569.ngrok.io/api/Patient/';
                                         const key = this.state.nic;
                                         const join = url.concat(key);
                                         fetch(join)
@@ -112,7 +115,7 @@ export default class SignIn extends Component {
                                                             if (this.state.dataSource == this.state.pass) {
                                                                 let cnic = this.state.nic.toString();
                                                                 AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
-                                                                    this.props.navigation.navigate('TabScreen', {
+                                                                    this.props.navigation.navigate('GetAppointments', {
                                                                         cnic1: this.state.nic,
                                                                     })
                                                                     console.log("i am inside")

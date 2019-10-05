@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList,ActivityIndicator, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import FlatlistData from './FlatListD/FlatlistData';
 import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class FlatListItem extends Component {
     state = {
         control: 'expand',
         viewHeight: 150,
         detail: '',
-        height:'',
-        textColor:'',
+        height: '',
+        textColor: 'green',
     };
     render() {
         return (
@@ -23,9 +25,10 @@ class FlatListItem extends Component {
                 marginLeft: 10,
                 marginRight: 10,
                 borderRadius: 20,
+                borderColor: '#fff',
                 padding: 5,
                 alignItems: 'center',
-                backgroundColor: this.props.index % 2 == 0 ? '#9e8e8d' : '#ff6666'
+                backgroundColor: '#fff'//this.props.index % 2 == 0 ? '#9e8e8d' : '#ff6666'
             }}
             >
                 <TouchableOpacity onPress={() => {
@@ -39,24 +42,26 @@ class FlatListItem extends Component {
                         bottom: 0
                     }}></TouchableOpacity>
 
-                <View style={{ marginTop: 5, flexDirection: "row", width:150 }}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 17, textAlign: 'auto' }}>Appointment</Text>
-                    <Text style={{ marginStart: 50, color: 'white', textAlign:'right'}}
+                <View style={{ marginTop: 5, flexDirection: "row", width: 150 }}>
+                    <Text style={{ color: '#000000', fontWeight: 'bold', fontSize: 17, textAlign: 'auto', textDecorationLine: "underline" }}>Appointment</Text>
+                    <Text style={{ marginStart: 50, color: this.state.textColor, textAlign: 'right' }}
                         onPress={() => {
                             if (this.state.control == "expand") {
                                 this.setState({
                                     control: 'condense',
                                     viewHeight: 280,
                                     detail: this.props.item.diseaseType,
-                                    height:20,
-                                  
+                                    height: 20,
+                                    textColor: 'red'
+
                                 })
                             }
                             else {
                                 this.setState({
                                     control: 'expand',
                                     viewHeight: 150,
-                                    detail:'',
+                                    detail: '',
+                                    textColor:'green'
                                 })
                             }
                         }}
@@ -64,25 +69,25 @@ class FlatListItem extends Component {
                 </View>
                 <View>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Doctor Name :</Text>
-                        <Text style={{ paddingLeft: 5, color: 'white', fontSize: 15, fontWeight: 'bold' }}>{this.props.item.doctorName}</Text>
+                        <Text style={{ paddingLeft: 10, color: '#b0a9a9', fontSize: 15 }}>Doctor Name :</Text>
+                        <Text style={{ paddingLeft: 5, color: '#3b3030', fontSize: 15, fontWeight: 'bold' }}>{this.props.item.doctorName}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
-                        <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Appointment Detail :</Text>
-                        <Text style={{ width: '40%', height: 25, paddingLeft: 5, color: 'white', fontStyle: 'italic' }}>{this.props.item.diseaseType}</Text>
+                        <Text style={{ paddingLeft: 10, color: '#b0a9a9', fontSize: 15 }}>Appointment Detail :</Text>
+                        <Text style={{ width: '40%', height: 25, paddingLeft: 5, color: '#3b3030', fontStyle: 'italic' }}>{this.props.item.diseaseType}</Text>
                     </View>
                     <View style={{ flexDirection: "row" }}>
-                        <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Appointment Date :</Text>
-                        <Text style={{ paddingLeft: 5, color: 'white' }}>{this.props.item.dateVisited}</Text>
+                        <Text style={{ paddingLeft: 10, color: '#b0a9a9', fontSize: 15 }}>Appointment Date :</Text>
+                        <Text style={{ paddingLeft: 5, color: '#3b3030' }}>{this.props.item.dateVisited}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Age :</Text>
-                            <Text style={{ paddingLeft: 5, color: 'white', fontWeight: 'bold' }}>{this.props.item.testResult}</Text>
+                            <Text style={{ paddingLeft: 10, color: '#b0a9a9', fontSize: 15 }}>Age :</Text>
+                            <Text style={{ paddingLeft: 5, color: '#3b3030', fontWeight: 'bold' }}>{this.props.item.testResult}</Text>
                         </View>
                         <View style={{ marginLeft: 40, flexDirection: 'row' }}>
-                            <Text style={{ paddingLeft: 10, color: 'white', fontSize: 15 }}>Weight :</Text>
-                            <Text style={{ paddingLeft: 5, color: 'white', fontWeight: 'bold' }}>{this.props.item.type}</Text>
+                            <Text style={{ paddingLeft: 10, color: '#b0a9a9', fontSize: 15 }}>Weight :</Text>
+                            <Text style={{ paddingLeft: 5, color: '#3b3030', fontWeight: 'bold' }}>{this.props.item.type}</Text>
                         </View>
 
                     </View>
@@ -100,17 +105,19 @@ class FlatListItem extends Component {
 
 
 export default class GetAppointments extends Component {
-    constructor(props) {
-        super(props)
+    static navigationOptions={
+        headerLeft:null
     }
-
-    state = {
-        dataSource: [],
-        isloading:true,
-        CNIC: '',
-
-    };
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            dataSource: [],
+            isloading: true,
+            CNIC: '',
+            buttonColor: "green"
+    
+        };
+    }
     componentDidMount() {
         AsyncStorage.getItem('CNIC', (err, result) => {
             if (result !== null) {
@@ -120,17 +127,19 @@ export default class GetAppointments extends Component {
                 console.log("this is the get appointment " + result);
             }
         });
-        return fetch('https://7b2933c3.ngrok.io/api/Disease/')
+        return fetch('https://f8f3f569.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     dataSource: responseJson,
                     isloading: false
                 })
-
             })
             .catch((error) => {
-                console.error(error);
+                this.setState({
+                    isloading: true,
+                })
+                console.log("catch is called")
             });
 
     }
@@ -158,14 +167,14 @@ export default class GetAppointments extends Component {
 
         if (this.state.isloading) {
             return (
-                <View style={{flex:1, justifyContent:'center'}}>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
                     <ActivityIndicator size='large' animating={true} />
                 </View>
             )
         }
         else {
             return (
-                <View>
+                <View style={{flex:1, backgroundColor: '#e8ebea'}}>
                     <FlatList
                         data={this.state.dataSource}
                         renderItem={({ item, index }) => {
@@ -178,7 +187,6 @@ export default class GetAppointments extends Component {
                             if (ownerId[1] == CNICS) {
                                 console.log("if is executing");
                                 return (
-                                    // <View></View>
                                     <FlatListItem item={item} index={index} />
                                 );
                             }
@@ -187,6 +195,57 @@ export default class GetAppointments extends Component {
                             }
                         }}
                         keyExtractor={(item, index) => index.toString()} />
+
+                    <ActionButton
+                        style={{
+                            marginEnd: -15,
+                            marginBottom: -20,
+                        }}
+                        degrees={310}
+                        buttonColor={this.state.buttonColor}
+                        onPress={() => {
+                            if (this.state.buttonColor == "red") {
+                                this.setState({
+                                    buttonColor: "green",
+                                    buttonState: false
+                                })
+                            }
+                            else {
+                                this.setState({
+                                    buttonColor: "red",
+                                    buttonState: true
+                                })
+                            }
+                        }}>
+
+                        <ActionButton.Item
+                            size={56}
+                            buttonColor='#fcba03'
+                            title="Generate QR Code"
+                            onPress={() => this.props.navigation.navigate('GeneratingQRCode')}>
+                            <Icon
+                                name="qrcode"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+
+                        <ActionButton.Item
+                            buttonColor='#03fc84'
+                            title="Personal Information"
+                            onPress={() => { this.props.navigation.navigate('PersonalInfo') }}>
+                            <Icon
+                                name="cog"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+
+                        {/* <ActionButton.Item
+            buttonColor='#1abc9c'
+            title="Refresh"
+            onPress={() => { }}>
+            <Icon name="undo" style={styles.actionButtonIcon} />
+          </ActionButton.Item> */}
+
+                    </ActionButton>
+
                 </View>
             )
         }
@@ -204,5 +263,10 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         marginRight: 3
     },
+    actionButtonIcon: {
+        fontSize: 30,
+        height: 30,
+        color: 'black',
+      },
 
 });

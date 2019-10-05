@@ -7,7 +7,7 @@ import GetAppointments from './Screens/GetAppoinments';
 import PersonalInfo from './Screens/PersonalInfo';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import GeneratingQRCode from './Screens/GeneratingQRCode';
 import SplashScreen from './Screens/SplashScreen';
 
@@ -15,7 +15,7 @@ import SplashScreen from './Screens/SplashScreen';
 const TabScreen = createMaterialTopTabNavigator(
   {
     Record: { screen: GetAppointments },
-    QR_Code:{screen:GeneratingQRCode},
+    QR_Code: { screen: GeneratingQRCode },
     Settings: { screen: PersonalInfo },
   },
   {
@@ -37,13 +37,12 @@ const TabScreen = createMaterialTopTabNavigator(
       },
     },
   });
-//
 
 const AppNavigator = createStackNavigator({
-  Splash:{
-    screen:SplashScreen,
-    navigationOptions:{
-      header:null,
+  Splash: {
+    screen: SplashScreen,
+    navigationOptions: {
+      header: null,
     }
   },
   Options: {
@@ -80,18 +79,36 @@ const AppNavigator = createStackNavigator({
       headerTintColor: '#ffffff'
     }
   },
-  TabScreen: {
-    screen: TabScreen,
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#ff6666',
-      },
-      headerTintColor: '#FFFFFF',
-      // title: 'TabExample',
-    },
-  },
+  // TabScreen: {
+  //   screen: TabScreen,
+  //   navigationOptions: {
+  //     headerStyle: {
+  //       backgroundColor: '#ff6666',
+  //     },
+  //     headerTintColor: '#FFFFFF',
+  //     // title: 'TabExample',
+  //   },
+  // },
   GetAppointments: {
     screen: GetAppointments,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666'
+      },
+      headerTintColor: '#ffffff'
+    }
+  },
+  GeneratingQRCode: {
+    screen: GeneratingQRCode,
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff6666'
+      },
+      headerTintColor: '#ffffff'
+    }
+  },
+  PersonalInfo: {
+    screen: PersonalInfo,
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#ff6666'

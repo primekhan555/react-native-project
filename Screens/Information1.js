@@ -137,7 +137,7 @@ export default class Information1 extends Component {
                                             "bloodType":"B_Positive"
                                         }
 
-                                        fetch('https://7b2933c3.ngrok.io/api/Patient/', {
+                                        fetch('https://f8f3f569.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
@@ -152,7 +152,7 @@ export default class Information1 extends Component {
                                                 if (responseStatus == 200) {
                                                     let cnic = this.state.CNIC.toString();
                                                     AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
-                                                        this.props.navigation.navigate('TabScreen', {
+                                                        this.props.navigation.navigate('GetAppointments', {
                                                             cnic:this.state.CNIC,
                                                         })
                                                         console.log("i am inside")
