@@ -172,7 +172,7 @@ export default class GetAppointments extends Component {
                 </View>
             )
         }
-        else {
+        // else {
             return (
                 <View style={{flex:1, backgroundColor: '#e8ebea'}}>
                     <FlatList
@@ -217,6 +217,15 @@ export default class GetAppointments extends Component {
                                 })
                             }
                         }}>
+                            <ActionButton.Item
+                            size={56}
+                            buttonColor='#9bff59'
+                            title="Adding Appointment"
+                            onPress={() => this.props.navigation.navigate('GeneratingQRCode')}>
+                            <Icon
+                                name="calendar-check"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
 
                         <ActionButton.Item
                             size={56}
@@ -248,7 +257,7 @@ export default class GetAppointments extends Component {
 
                 </View>
             )
-        }
+        // }
         {/* ) */ }
     }
 }
