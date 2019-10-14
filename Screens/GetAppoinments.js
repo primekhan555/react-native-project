@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, StatusBar, TouchableOpacity, ScrollView } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import FlatlistData from './FlatListD/FlatlistData';
 import HScrollCStyle from '../ScrollComponent/HScrollCStyle';
@@ -127,7 +127,7 @@ export default class GetAppointments extends Component {
                 console.log("this is the get appointment " + result);
             }
         });
-        return fetch('https://f8f3f569.ngrok.io/api/Disease/')
+        return fetch('https://e4943289.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -168,6 +168,7 @@ export default class GetAppointments extends Component {
         if (this.state.isloading) {
             return (
                 <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <StatusBar backgroundColor='#ff6666'/>
                     <ActivityIndicator size='large' animating={true} />
                 </View>
             )
@@ -175,6 +176,7 @@ export default class GetAppointments extends Component {
         // else {
             return (
                 <View style={{flex:1, backgroundColor: '#e8ebea'}}>
+                    <StatusBar backgroundColor='#ff6666' />
                     <FlatList
                         data={this.state.dataSource}
                         renderItem={({ item, index }) => {
@@ -221,7 +223,7 @@ export default class GetAppointments extends Component {
                             size={56}
                             buttonColor='#9bff59'
                             title="Adding Appointment"
-                            onPress={() => this.props.navigation.navigate('GeneratingQRCode')}>
+                            onPress={() => this.props.navigation.navigate('NewAppointment')}>
                             <Icon
                                 name="calendar-check"
                                 style={styles.actionButtonIcon} />

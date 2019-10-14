@@ -21,7 +21,7 @@ export default class PersonalInfo extends Component{
             }
             
         }).then((result)=>{
-        const url='https://f8f3f569.ngrok.io/api/Patient/';
+        const url='https://e4943289.ngrok.io/api/Patient/';
         var nic=result;
         var CNICS = nic.replace(/['"]+/g, '')
         var join=url.concat(CNICS);

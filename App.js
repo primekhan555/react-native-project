@@ -10,6 +10,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import GeneratingQRCode from './Screens/GeneratingQRCode';
 import SplashScreen from './Screens/SplashScreen';
+import NewAppointment from './Screens/NewAppointment';
 
 //
 const TabScreen = createMaterialTopTabNavigator(
@@ -114,6 +115,12 @@ const AppNavigator = createStackNavigator({
         backgroundColor: '#ff6666'
       },
       headerTintColor: '#ffffff'
+    }
+  },
+  NewAppointment: {
+    screen: NewAppointment,
+    navigationOptions : {
+      header:null
     }
   }
 });

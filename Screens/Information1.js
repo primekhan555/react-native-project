@@ -137,7 +137,7 @@ export default class Information1 extends Component {
                                             "bloodType":"B_Positive"
                                         }
 
-                                        fetch('https://f8f3f569.ngrok.io/api/Patient/', {
+                                        fetch('https://e4943289.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
