@@ -82,7 +82,8 @@ export default class Information1 extends Component {
                                     <Picker.Item label="Female" value="Female" />
                                 </Picker>
                             </View>
-                            <View><Text style={{ marginLeft: 10, marginBottom: 5, fontWeight: 'bold' }}>Date of Birth</Text></View>
+                            <View><
+                                Text style={{ marginLeft: 10, marginBottom: 5, fontWeight: 'bold' }}>Date of Birth</Text></View>
                             <View style={{ margin: 10 }}>
                                 <DatePicker
                                     style={{ width: 210 }}

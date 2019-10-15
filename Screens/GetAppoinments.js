@@ -169,7 +169,67 @@ export default class GetAppointments extends Component {
             return (
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <StatusBar backgroundColor='#ff6666'/>
+                    
+                    <ActionButton
+                        style={{
+                            marginEnd: -15,
+                            marginBottom: -20,
+                        }}
+                        degrees={310}
+                        buttonColor={this.state.buttonColor}
+                        onPress={() => {
+                            if (this.state.buttonColor == "red") {
+                                this.setState({
+                                    buttonColor: "green",
+                                    buttonState: false
+                                })
+                            }
+                            else {
+                                this.setState({
+                                    buttonColor: "red",
+                                    buttonState: true
+                                })
+                            }
+                        }}>
+                            <ActionButton.Item
+                            size={56}
+                            buttonColor='#9bff59'
+                            title="Adding Appointment"
+                            onPress={() => this.props.navigation.navigate('NewAppointment')}>
+                            <Icon
+                                name="calendar-check"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+
+                        <ActionButton.Item
+                            size={56}
+                            buttonColor='#fcba03'
+                            title="Generate QR Code"
+                            onPress={() => this.props.navigation.navigate('GeneratingQRCode')}>
+                            <Icon
+                                name="qrcode"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+
+                        <ActionButton.Item
+                            buttonColor='#03fc84'
+                            title="Personal Information"
+                            onPress={() => { this.props.navigation.navigate('PersonalInfo') }}>
+                            <Icon
+                                name="cog"
+                                style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+
+                        {/* <ActionButton.Item
+            buttonColor='#1abc9c'
+            title="Refresh"
+            onPress={() => { }}>
+            <Icon name="undo" style={styles.actionButtonIcon} />
+          </ActionButton.Item> */}
+
+                    </ActionButton>
                     <ActivityIndicator size='large' animating={true} />
+
                 </View>
             )
         }

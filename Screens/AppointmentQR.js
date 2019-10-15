@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, AsyncStorage, ActivityIndicator } from 'react-native';
+import {
+    Text,
+    View,
+    StyleSheet,
+    ActivityIndicator,
+    Dimensions,
+    AsyncStorage,
+} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import base64 from 'react-native-base64';
 
-export default class GeneratingQRCode extends Component {
+
+var screen = Dimensions.get('window');
+export default class AppointmentQR extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstHalf:   'processofmakingtheenntpolluthe #',
-            secondHalf:  '# aveplehveconofrtesupstdtheli #',
-            thirdHalf:   '# mbstentofasicehashaulnvironh #',
-            fourthHalf:  '# cdaticadhislanlutomlydownoad #',
-            fifthHalf:   '# willcalldhiscondydautomatiad #',
-            sixthHalf:   '# mmafhndwiscoiltomanoadallydo #',
-            seventhHalf: '# iscmmghndwoaiawnolomutadlydo #',
-            seventhHalf: '# andwimdohlownlautaloadomatic #',
+            diseaseTypes: this.props.navigation.getParam('diseaseTypes', ''),
+            medicines: this.props.navigation.getParam('medicines', ''),
+            visitDate: this.props.navigation.getParam('visitDate', ''),
+            LabTest: this.props.navigation.getParam('LabTest', ''),
+            firstHalf:   'processofmakingpolggfluethe #',
+            secondHalf:  '# Peoplehavesupportsystemof #',
+            thirdHalf:   '# environmentwhichhashrmful #',
+            fourthHalf:  '# Thiscommmaticallydownload #',
+            fifthHalf:   '# thelifesupportsdsfsstemof #',
+            sixthHalf:   '# systemohhashafpohhshtsyst #',
+            seventhHalf: '# supporshahtsyhhahakshaort #',
+            eighthHalf:  '# commpshahortsshashahysand #',
+            patientInfoScreen : 'PatientInfoScreen',
             secondsTillNow: '',
             nic: '',
             randomNumber: '',
@@ -22,15 +36,16 @@ export default class GeneratingQRCode extends Component {
             isloading: true,
         };
     }
+
     componentDidMount() {
         AsyncStorage.getItem('CNIC', (err, result) => {
             if (result !== null) {
-                var random = Math.floor((Math.random() * 900000) + 100000);
+                // var random = Math.floor((Math.random() * 900000) + 100000);
                 var second = new Date().getTime() / 1000;
                 var roundedSecond = Math.round(second);
                 this.setState({
                     nic: result,
-                    randomNumber: random,
+                    // randomNumber: random,
                     secondsTillNow: roundedSecond,
                     isloading: false
                 })
@@ -39,22 +54,38 @@ export default class GeneratingQRCode extends Component {
             var firstHalf = this.state.firstHalf;
             var nic = result;
             var secondHalf = this.state.secondHalf;
-            var randoms = this.state.randomNumber;
+            var diseaseTypes = this.state.diseaseTypes;
             var thirdHalf = this.state.thirdHalf;
-            var seconds = this.state.secondsTillNow + 9000;
+            var medicines = this.state.medicines;
             var fourthHalf = this.state.fourthHalf;
-
+            var visitDate = this.state.visitDate;
+            var fifthHalf = this.state.fifthHalf;
+            var LabTest = this.state.LabTest;
+            var sixthHalf = this.state.sixthHalf;
+            var seconds = this.state.secondsTillNow + 9000;
+            var seventhHalf = this.state.seventhHalf;
+            var patientInfoScreen = this.state.patientInfoScreen;
+            var eighthHalf = this.state.eighthHalf;
             // var secondss=Math.round(seconds)-9000;
 
             var firstSecond = firstHalf.concat(nic);
             var secondThird = firstSecond.concat(secondHalf);
-            var thirdFourth = secondThird.concat(randoms);
+            var thirdFourth = secondThird.concat(patientInfoScreen);
             var fourthFifth = thirdFourth.concat(thirdHalf);
-            var fifthSixth = fourthFifth.concat(seconds);
+            var fifthSixth = fourthFifth.concat(medicines);
             var sixthSeventh = fifthSixth.concat(fourthHalf);
+            var seventhEighth = sixthSeventh.concat(visitDate);
+            var eighthNineth = seventhEighth.concat(fifthHalf);
+            var ninethTenth = eighthNineth.concat(LabTest);
+            var tenthEleventh = ninethTenth.concat(sixthHalf);
+            var eleventhTwelth = tenthEleventh.concat(seconds);
+            var twelthThirteenth = eleventhTwelth.concat(seventhHalf);
+            var thirteenthFourteenth = twelthThirteenth.concat(diseaseTypes);
+            var fourteenthFifteenth = thirteenthFourteenth.concat(eighthHalf);
 
-            console.log(sixthSeventh);
-            var encoded = base64.encode(sixthSeventh);
+
+            console.log(fourteenthFifteenth);
+            var encoded = base64.encode(fourteenthFifteenth);
             this.setState({
                 valueForQRCode: encoded,
             });

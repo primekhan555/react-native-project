@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, AsyncStorage } from 'react-native';
+import { View, Text, StyleSheet, AsyncStorage, StatusBar } from 'react-native';
 
 export default class SplashScreen extends Component {
     componentDidMount() {
@@ -10,14 +10,20 @@ export default class SplashScreen extends Component {
                     cnic: result,
                 })
             }
-            else{
+            else {
                 this.props.navigation.navigate('Options');
             }
         });
     }
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ff6666'}}>
+            <View style={{
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#ff6666'
+            }}>
+                <StatusBar backgroundColor='#ff6666'/>
                 <View style={styles.container}>
                     <Text style={styles.text}>MediBlock</Text>
                 </View>
@@ -31,12 +37,12 @@ const styles = StyleSheet.create({
         height: 200,
         width: 350,
         borderRadius: 20,
-        alignItems:'center',
-        justifyContent:'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    text:{
-        color:'#ff6666',
-        fontSize:40,
-        fontWeight:'bold',
+    text: {
+        color: '#ff6666',
+        fontSize: 40,
+        fontWeight: 'bold',
     }
 });

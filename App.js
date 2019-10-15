@@ -11,6 +11,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import GeneratingQRCode from './Screens/GeneratingQRCode';
 import SplashScreen from './Screens/SplashScreen';
 import NewAppointment from './Screens/NewAppointment';
+import AppointmentQR from './Screens/AppointmentQR';
 
 //
 const TabScreen = createMaterialTopTabNavigator(
@@ -122,6 +123,9 @@ const AppNavigator = createStackNavigator({
     navigationOptions : {
       header:null
     }
+  },
+  AppointmentQR: {
+    screen: AppointmentQR,
   }
 });
 
