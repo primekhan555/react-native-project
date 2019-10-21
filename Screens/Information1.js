@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity, Picker } from 'react-native';
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import { white, black } from 'ansi-colors';
 
 export default class Information1 extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
-    _storeCNIC = async ()=>{
-    try {
-        await AsyncStorage.setItem('CNIC', this.state.CNIC);
-        console.log("cnic saved successfully")
-      } catch (error) {
-        console.log("error in saving")
-      }
+    _storeCNIC = async () => {
+        try {
+            await AsyncStorage.setItem('CNIC', this.state.CNIC);
+            console.log("cnic saved successfully")
+        } catch (error) {
+            console.log("error in saving")
+        }
     };
     state = {
         CNIC: this.props.navigation.getParam('nic', ''),
-        password: this.props.navigation.getParam('pass',''),
+        password: this.props.navigation.getParam('pass', ''),
         fullName: '',
         email: '',
         gender: 'Male',
@@ -106,9 +106,9 @@ export default class Information1 extends Component {
                                         }
                                     }}
                                     onDateChange={(newDate) => {
-                                        var fullDate= newDate.concat("T00:00:00.000Z");
+                                        var fullDate = newDate.concat("T00:00:00.000Z");
                                         this.setState({
-                                            dateofBirth:fullDate
+                                            dateofBirth: fullDate
                                         })
                                         var allDate = newDate.split("-");
                                         var intDate = parseInt(allDate[0])
@@ -125,8 +125,8 @@ export default class Information1 extends Component {
                             <View style={styles.nextOpacityView}>
                                 <TouchableOpacity style={styles.nextOpacity}
                                     onPress={() => {
-                                        let block={
-                                            "$class": "com.org.hello.Patient",
+                                        let block = {
+                                            "$class": "org.com.mediblocking.Patient",
                                             "nicNum": this.state.CNIC,
                                             "firstName": this.state.fullName,
                                             "lastName": this.state.password,
@@ -134,11 +134,11 @@ export default class Information1 extends Component {
                                             "phoneNum": "03429188353",
                                             "age": this.state.age,
                                             "gender": this.state.gender,
-                                            "dateofBirth":this.state.dateofBirth,
-                                            "bloodType":"B_Positive"
+                                            "dateofBirth": this.state.dateofBirth,
+                                            "bloodType": "B_Positive"
                                         }
 
-                                        fetch('https://e4943289.ngrok.io/api/Patient/', {
+                                        fetch('https://0a50e7d4.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
@@ -154,7 +154,7 @@ export default class Information1 extends Component {
                                                     let cnic = this.state.CNIC.toString();
                                                     AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
                                                         this.props.navigation.navigate('GetAppointments', {
-                                                            cnic:this.state.CNIC,
+                                                            cnic: this.state.CNIC,
                                                         })
                                                         console.log("i am inside")
                                                     })
@@ -162,7 +162,7 @@ export default class Information1 extends Component {
                                                 }
                                             })
                                         // console.log(this.state.dateofBirth); // Hours
-                                        
+
                                     }}>
                                     <Text style={styles.textnextOpacity}>Next</Text>
                                 </TouchableOpacity>

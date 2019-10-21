@@ -13,6 +13,13 @@ import base64 from 'react-native-base64';
 
 var screen = Dimensions.get('window');
 export default class AppointmentQR extends Component {
+    static navigationOptions={
+        headerStyle:{
+            backgroundColor:'#ff6666',
+            
+        },
+        headerTintColor:'#ffffff'
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -106,7 +113,7 @@ export default class AppointmentQR extends Component {
                     <View style={{ marginTop: 60, backgroundColor: "red" }}>
                         <QRCode
                             value={this.state.valueForQRCode ? this.state.valueForQRCode : 'NA'}
-                            size={250}
+                            size={290}
                             color="black"
                             backgroundColor="white"
                             logo={{
@@ -118,38 +125,7 @@ export default class AppointmentQR extends Component {
                             logoBackgroundColor="green"
                         />
                     </View>
-                    <Text
-                        style={{
-                            marginTop: 25,
-                            fontSize: 20,
-                            color: "gray",
-                            letterSpacing: 1
-                        }}
-                    >Your Code</Text>
-                    <View
-                        style={{
-                            marginTop: 5,
-                            height: 60,
-                            marginBottom: 20,
-                            borderWidth: 2,
-                            borderColor: "black",
-                            paddingTop: 10,
-                            paddingStart: 30,
-                            paddingEnd: 30,
-                            paddingBottom: 10,
-                            borderRadius: 10,
-                            justifyContent: "center",
-                            alignItems: "center"
-
-                        }}>
-                        <Text
-                            style={{
-                                fontSize: 30,
-                                color: "green",
-                                letterSpacing: 7
-                            }}
-                        >{this.state.randomNumber}</Text>
-                    </View>
+                    
                 </View>
             );
         }
@@ -159,6 +135,7 @@ const styles = StyleSheet.create({
     MainContainer: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom:50
     },
 });

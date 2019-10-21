@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 export default class SignUp extends Component {
-  static navigationOptions={
-    headerLeft:null,
+  static navigationOptions = {
+    headerLeft: null,
   }
   constructor(props) {
     super(props)
@@ -112,29 +112,29 @@ export default class SignUp extends Component {
                   // var pattern = regex.test(this.state.cnic);
                   // if (pattern) {
                   //   console.log("your cnic is matching")
-                    if (this.state.pass1 == this.state.pass2) {
-                      console.log("password confirmed")
-                      const url = 'https://e4943289.ngrok.io/api/Patient/';
-                      const key = this.state.cnic;
-                      const join = url.concat(key);
+                  if (this.state.pass1 == this.state.pass2) {
+                    console.log("password confirmed")
+                    const url = 'https://0a50e7d4.ngrok.io/api/Patient/';
+                    const key = this.state.cnic;
+                    const join = url.concat(key);
 
-                      fetch(join)
-                        .then((response) => response.status
-                        ).then((statusCode) => {
-                          if (statusCode == 404) {
-                            this.props.navigation.navigate('Information1',{ 
-                              nic:this.state.cnic,
-                              pass:this.state.pass2,
-                             })
-                          }
-                          else if(statusCode ==200){
-                            alert("your CNIC is already registered, please SignIn");
-                          }
-                        })
-                    }
-                    else {
-                      console.log("password is not matching")
-                    }
+                    fetch(join)
+                      .then((response) => response.status
+                      ).then((statusCode) => {
+                        if (statusCode == 404) {
+                          this.props.navigation.navigate('Information1', {
+                            nic: this.state.cnic,
+                            pass: this.state.pass2,
+                          })
+                        }
+                        else if (statusCode == 200) {
+                          alert("your CNIC is already registered, please SignIn");
+                        }
+                      })
+                  }
+                  else {
+                    console.log("password is not matching")
+                  }
                   // }
                   // else {
                   //   console.log("your cnic is incorrect")

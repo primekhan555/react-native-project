@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
 
 export default class SignIn extends Component {
-    static navigationOptions={
-        headerLeft:null
+    static navigationOptions = {
+        headerLeft: null
     }
     constructor(props) {
         super(props)
@@ -92,45 +92,45 @@ export default class SignIn extends Component {
                                     //     console.log("your nic pattern is not Valid")
                                     // }
                                     // else {
-                                        // console.log("your pattern is matching")
-                                        const url = 'https://e4943289.ngrok.io/api/Patient/';
-                                        const key = this.state.nic;
-                                        const join = url.concat(key);
-                                        fetch(join)
-                                            .then((response) => response.status)
-                                            .then((statusCode) => {
-                                                if (statusCode == 404) {
-                                                    alert("signUp first")
-                                                }
-                                                else if (statusCode == 200 || statusCode == 304) {
-                                                    fetch(join)
-                                                        .then((response) => response.json())
-                                                        .then((responseJson) => {
-                                                            this.setState({
-                                                                isLoading: false,
-                                                                dataSource: responseJson.lastName,
-                                                            })
+                                    // console.log("your pattern is matching")
+                                    const url = 'https://0a50e7d4.ngrok.io/api/Patient/';
+                                    const key = this.state.nic;
+                                    const join = url.concat(key);
+                                    fetch(join)
+                                        .then((response) => response.status)
+                                        .then((statusCode) => {
+                                            if (statusCode == 404) {
+                                                alert("signUp first")
+                                            }
+                                            else if (statusCode == 200 || statusCode == 304) {
+                                                fetch(join)
+                                                    .then((response) => response.json())
+                                                    .then((responseJson) => {
+                                                        this.setState({
+                                                            isLoading: false,
+                                                            dataSource: responseJson.lastName,
                                                         })
-                                                        .then(() => {
-                                                            if (this.state.dataSource == this.state.pass) {
-                                                                let cnic = this.state.nic.toString();
-                                                                AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
-                                                                    this.props.navigation.navigate('GetAppointments', {
-                                                                        cnic1: this.state.nic,
-                                                                    })
-                                                                    console.log("i am inside")
+                                                    })
+                                                    .then(() => {
+                                                        if (this.state.dataSource == this.state.pass) {
+                                                            let cnic = this.state.nic.toString();
+                                                            AsyncStorage.setItem('CNIC', JSON.stringify(cnic), () => {
+                                                                this.props.navigation.navigate('GetAppointments', {
+                                                                    cnic1: this.state.nic,
                                                                 })
-                                                            }
-                                                            else {
-                                                                console.log("password is incorrect")
-                                                            }
-                                                        })
-                                                        .catch((error) => {
-                                                            console.error(error)
-                                                        });
-                                                }
-                                            })
-                                    
+                                                                console.log("i am inside")
+                                                            })
+                                                        }
+                                                        else {
+                                                            console.log("password is incorrect")
+                                                        }
+                                                    })
+                                                    .catch((error) => {
+                                                        console.error(error)
+                                                    });
+                                            }
+                                        })
+
                                 }}>
                                 <Text style={styles.buttonText}>Continue</Text>
                             </TouchableOpacity>

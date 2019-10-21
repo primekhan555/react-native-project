@@ -127,7 +127,7 @@ export default class GetAppointments extends Component {
                 console.log("this is the get appointment " + result);
             }
         });
-        return fetch('https://e4943289.ngrok.io/api/Disease/')
+        return fetch('https://0a50e7d4.ngrok.io/api/Disease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -197,7 +197,7 @@ export default class GetAppointments extends Component {
                             title="Adding Appointment"
                             onPress={() => this.props.navigation.navigate('NewAppointment')}>
                             <Icon
-                                name="calendar-check"
+                                name="calendar-plus-o"
                                 style={styles.actionButtonIcon} />
                         </ActionButton.Item>
 
