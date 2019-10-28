@@ -14,11 +14,14 @@ import AppointmentQR from './AppointmentQR';
 
 export default class NewAppointment extends Component {
     state = {
-        diseaseTypes:'',
-        medicines:'',
+        diseaseTypes: '',
+        medicines: '',
         visitDate: '2019-10-13',
         LabTest: "Not_Taken",
+        status: true,
     };
+
+
     render() {
         return (
             <View style={{
@@ -33,7 +36,7 @@ export default class NewAppointment extends Component {
                     marginTop: 8,
                     marginBottom: 8,
                     borderRadius: 20,
-                    alignItems:'center'
+                    alignItems: 'center'
                 }}>
                     <ScrollView>
                         <View style={{
@@ -51,9 +54,9 @@ export default class NewAppointment extends Component {
                                 <TextInput
                                     placeholder='Enter Disease Type here'
                                     underlineColorAndroid='black'
-                                    onChangeText={(value)=>{
+                                    onChangeText={(value) => {
                                         this.setState({
-                                            diseaseTypes:value,
+                                            diseaseTypes: value,
                                         })
                                     }}
                                 />
@@ -69,9 +72,9 @@ export default class NewAppointment extends Component {
                                 <TextInput
                                     placeholder='Enter Medicines here'
                                     underlineColorAndroid='black'
-                                    onChangeText={(value)=>{
+                                    onChangeText={(value) => {
                                         this.setState({
-                                            medicines:value,
+                                            medicines: value,
                                         })
                                     }}
                                 />
@@ -138,50 +141,66 @@ export default class NewAppointment extends Component {
                                     <Picker.Item label="Taken" value="Taken" />
                                 </Picker>
                             </View>
-                            {/* <View>
-                                <TextInput></TextInput>
-                            </View> */}
-                            <View
-                            style={{
-                                marginTop:25,
-                                width:200,
-                                height:40,
-                                alignSelf:'center',
-                                borderRadius:7,
-                            }}>
-                                <TouchableOpacity style={{
-                                    height:40,
-                                    backgroundColor:'#ff6666',
-                                    borderRadius:7,
-                                    justifyContent:'center',
-                                }}
-                                onPress={()=>{
-                                    this.props.navigation.navigate('AppointmentQR',{
-                                        diseaseTypes:this.state.diseaseTypes,
-                                        medicines:this.state.medicines,
-                                        visitDate:this.state.visitDate,
-                                        LabTest:this.state.LabTest
-                                    })
-                                }}>
-                                    <Text
-                                    style={{
-                                        alignSelf:'center',
-                                        fontWeight:'bold',
-                                        letterSpacing:0.4,
-                                        fontSize:16,
-                                        color:'white'
-                                    }}
-                                    >Generate</Text>
-
-                                </TouchableOpacity>
-
+                            <View>
+                                { 
+                                    this.state.LabTest=='Taken'?
+                                    <Text style={{marginTop:20, fontWeight:'bold'}}>Enter Lab Tests below</Text>:null
+                                }
                             </View>
+                            <View>
+                                {  
+                                    this.state.LabTest == 'Taken' ?
+                                        <TextInput
+                                            placeholder='Enter Lab Test here'
+                                            underlineColorAndroid='black'
+                                            keyboardType="default"
+                                        /> : null
+                                }
+                            </View>
+
                         </View>
                     </ScrollView>
+                    <View
+                        style={{
+                            marginTop: 5,
+                            marginBottom: 10,
+                            width: 200,
+                            height: 40,
+                            alignSelf: 'center',
+                            borderRadius: 7,
+                        }}>
+                        <TouchableOpacity style={{
+                            height: 40,
+                            backgroundColor: '#ff6666',
+                            borderRadius: 7,
+                            justifyContent: 'center',
+                        }}
+                            onPress={() => {
+                                this.props.navigation.navigate('AppointmentQR', {
+                                    diseaseTypes: this.state.diseaseTypes,
+                                    medicines: this.state.medicines,
+                                    visitDate: this.state.visitDate,
+                                    LabTest: this.state.LabTest
+                                })
+                            }}>
+                            <Text
+                                style={{
+                                    alignSelf: 'center',
+                                    fontWeight: 'bold',
+                                    letterSpacing: 0.4,
+                                    fontSize: 16,
+                                    color: 'white'
+                                }}>Generate</Text>
+
+                        </TouchableOpacity>
+
+
+                    </View>
 
                 </View>
 
-            </View>
+
+            </View >
         );
     }
 }

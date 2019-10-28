@@ -12,6 +12,8 @@ import GeneratingQRCode from './Screens/GeneratingQRCode';
 import SplashScreen from './Screens/SplashScreen';
 import NewAppointment from './Screens/NewAppointment';
 import AppointmentQR from './Screens/AppointmentQR';
+import UN_VerifiedDetail from './Screens/UN_VerifiedDetail';
+import VerifiedDetail from './Screens/VerifiedDetail';
 
 //
 const TabScreen = createMaterialTopTabNavigator(
@@ -120,13 +122,20 @@ const AppNavigator = createStackNavigator({
   },
   NewAppointment: {
     screen: NewAppointment,
-    navigationOptions : {
-      header:null
+    navigationOptions: {
+      header: null
     }
   },
   AppointmentQR: {
     screen: AppointmentQR,
+  },
+  UN_VerifiedDetail: {
+    screen: UN_VerifiedDetail,
+  },
+  VerifiedDetail:{
+    screen:VerifiedDetail,
   }
+
 });
 
 export default createAppContainer(AppNavigator);

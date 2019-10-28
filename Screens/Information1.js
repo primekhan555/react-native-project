@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, TextInput, ScrollView, TouchableOpacity, Picker } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Text,
+    TextInput,
+    ScrollView,
+    TouchableOpacity,
+    Picker
+} from 'react-native';
 import { AsyncStorage } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import { white, black } from 'ansi-colors';
@@ -43,7 +51,7 @@ export default class Information1 extends Component {
                                     placeholder='Full Name'
                                     textContentType="name"
                                     keyboardType="name-phone-pad"
-                                    placeholderTextColor='#ff6666'
+                                    placeholderTextColor='lightgray'
                                     underlineColorAndroid='#ff6666'
                                     onChangeText={(value) => {
                                         this.setState({
@@ -53,12 +61,15 @@ export default class Information1 extends Component {
                                 />
                             </View>
                             <View style={styles.TextInputContainer}>
-                                <Text style={{ marginBottom: 5, fontWeight: 'bold' }}>Email Address</Text>
+                                <Text style={{
+                                    marginBottom: 5,
+                                    fontWeight: 'bold'
+                                }}>Email Address</Text>
                                 <TextInput
                                     textContentType="emailAddress"
                                     keyboardType="email-address"
                                     placeholder='Email'
-                                    placeholderTextColor='#ff6666'
+                                    placeholderTextColor='lightgray'
                                     underlineColorAndroid='#ff6666'
                                     onChangeText={(value) => {
                                         this.setState({
@@ -67,8 +78,13 @@ export default class Information1 extends Component {
                                     }}
                                 />
                             </View>
-                            <View><Text style={{ marginLeft: 10, marginBottom: 5, fontWeight: 'bold' }}>Gender</Text></View>
-
+                            <View>
+                                <Text style={{
+                                    marginLeft: 10,
+                                    marginBottom: 5,
+                                    fontWeight: 'bold'
+                                }}>Gender</Text>
+                            </View>
                             <View style={styles.pickerContainer}>
                                 <Picker style={styles.pickerStyle}
                                     selectedValue={this.state.gender}
@@ -82,18 +98,23 @@ export default class Information1 extends Component {
                                     <Picker.Item label="Female" value="Female" />
                                 </Picker>
                             </View>
-                            <View><
-                                Text style={{ marginLeft: 10, marginBottom: 5, fontWeight: 'bold' }}>Date of Birth</Text></View>
+                            <View>
+                                <Text style={{
+                                    marginLeft: 10,
+                                    marginBottom: 5,
+                                    fontWeight: 'bold'
+                                }}>Date of Birth</Text>
+                            </View>
                             <View style={{ margin: 10 }}>
                                 <DatePicker
-                                    style={{ width: 210 }}
+                                    style={{ width: 275 }}
                                     mode="date"
                                     date={this.state.dateofBirth}
                                     placeholder="select date"
                                     format="YYYY-MM-DD"
                                     minDate="1980-01-01"
                                     maxDate="2019-01-01"
-                                    showIcon={true}
+                                    showIcon={false}
                                     customStyles={{
                                         dateIcon: {
                                             position: 'relative',
@@ -121,12 +142,11 @@ export default class Information1 extends Component {
                                     }}
                                 />
                             </View>
-
                             <View style={styles.nextOpacityView}>
                                 <TouchableOpacity style={styles.nextOpacity}
                                     onPress={() => {
                                         let block = {
-                                            "$class": "org.com.mediblocking.Patient",
+                                            "$class": "org.com.mediblockinge1.Patient",
                                             "nicNum": this.state.CNIC,
                                             "firstName": this.state.fullName,
                                             "lastName": this.state.password,
@@ -137,15 +157,13 @@ export default class Information1 extends Component {
                                             "dateofBirth": this.state.dateofBirth,
                                             "bloodType": "B_Positive"
                                         }
-
-                                        fetch('https://0a50e7d4.ngrok.io/api/Patient/', {
+                                        fetch('https://cc1c08e5.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',
                                                 'Content-Type': 'application/json',
                                             },
                                             body: JSON.stringify(block),
-
                                         })
                                             .then((response) => response.status)
                                             .then((responseStatus) => {
@@ -162,22 +180,18 @@ export default class Information1 extends Component {
                                                 }
                                             })
                                         // console.log(this.state.dateofBirth); // Hours
-
                                     }}>
                                     <Text style={styles.textnextOpacity}>Next</Text>
                                 </TouchableOpacity>
                             </View>
-
                         </View>
                     </ScrollView>
                 </View>
             </View>
-
         );
     }
 }
 const styles = StyleSheet.create({
-
     mainContainer: {
         flex: 1,
         backgroundColor: '#ff6666'
@@ -185,14 +199,12 @@ const styles = StyleSheet.create({
     firstContainer: {
         flex: 25,
         backgroundColor: '#ff6666',
-
     },
     textFirstContainer: {
         color: 'white',
         fontSize: 40,
         marginLeft: 25,
         marginTop: 35
-
     },
     mainSecondContainer: {
         flex: 75,
@@ -220,7 +232,6 @@ const styles = StyleSheet.create({
         marginStart: 180,
         marginEnd: 20,
         marginBottom: 20,
-
     },
     nextOpacity: {
         width: 100,
@@ -232,18 +243,21 @@ const styles = StyleSheet.create({
     textnextOpacity: {
         color: 'white',
         textAlign: 'center'
-
     },
     pickerContainer: {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         marginLeft: 20,
-        marginBottom: 10
+        marginRight: 10,
+        height: 40,
+        marginBottom: 10,
+        borderColor: 'lightgray',
+        borderWidth: 1
     },
     pickerStyle: {
-        height: 60,
-        width: "60%",
-        color: '#ff6666',
+        height: 40,
+        width: "100%",
+        color: 'black',
         justifyContent: 'center',
     },
 });

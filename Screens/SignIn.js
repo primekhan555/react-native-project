@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView, } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet,
+    TouchableOpacity,
+    ScrollView,
+} from 'react-native';
 import { AsyncStorage } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { voidTypeAnnotation } from '@babel/types';
 
@@ -12,7 +18,6 @@ export default class SignIn extends Component {
     constructor(props) {
         super(props)
     }
-
     state = {
         nic: '',
         pass: '',
@@ -22,10 +27,8 @@ export default class SignIn extends Component {
         passEyeState: true,
         cnic: '',
     };
-
     render() {
         return (
-
             <View style={styles.mainContainer}>
                 <View style={styles.firstContainer}>
                     <Text style={styles.firstContainerText}>Sign In</Text>
@@ -37,7 +40,7 @@ export default class SignIn extends Component {
                             <TextInput
                                 style={styles.TextInput}
                                 label="nic"
-                                placeholder=" 16202-0195532-5"
+                                placeholder=" xxxxx-xxxxxxx-x"
                                 keyboardType="decimal-pad"
                                 placeholderTextColor="#857777"
                                 underlineColorAndroid={this.state.fieldUnderlineColor}
@@ -59,7 +62,6 @@ export default class SignIn extends Component {
                                 }}
                             />
                         </View>
-
                         <View style={styles.TextInputViewPass}>
                             <TextInput
                                 style={styles.TextInput}
@@ -74,7 +76,6 @@ export default class SignIn extends Component {
                                     })
                                 }}
                             />
-
                         </View>
                         <View style={styles.buttonView}>
                             <TouchableOpacity
@@ -93,7 +94,7 @@ export default class SignIn extends Component {
                                     // }
                                     // else {
                                     // console.log("your pattern is matching")
-                                    const url = 'https://0a50e7d4.ngrok.io/api/Patient/';
+                                    const url = 'https://cc1c08e5.ngrok.io/api/Patient/';
                                     const key = this.state.nic;
                                     const join = url.concat(key);
                                     fetch(join)
@@ -130,7 +131,6 @@ export default class SignIn extends Component {
                                                     });
                                             }
                                         })
-
                                 }}>
                                 <Text style={styles.buttonText}>Continue</Text>
                             </TouchableOpacity>
@@ -140,7 +140,6 @@ export default class SignIn extends Component {
             </View>
         );
     }
-
 }
 const styles = StyleSheet.create({
     mainContainer: {

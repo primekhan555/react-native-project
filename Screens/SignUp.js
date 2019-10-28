@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  ScrollView
+} from 'react-native';
 
 export default class SignUp extends Component {
   static navigationOptions = {
@@ -114,7 +121,7 @@ export default class SignUp extends Component {
                   //   console.log("your cnic is matching")
                   if (this.state.pass1 == this.state.pass2) {
                     console.log("password confirmed")
-                    const url = 'https://0a50e7d4.ngrok.io/api/Patient/';
+                    const url = 'https://cc1c08e5.ngrok.io/api/Patient/';
                     const key = this.state.cnic;
                     const join = url.concat(key);
 

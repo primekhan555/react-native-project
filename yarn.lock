@@ -970,6 +970,11 @@
     eslint-plugin-react-native "3.6.0"
     prettier "1.16.4"
 
+"@react-native-community/viewpager@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-2.0.1.tgz#892e2148c8bca4ff157280e4be81d88be3264efc"
+  integrity sha512-fTTpO6xdVrTAAWbC1B2TQbxOkzDtvE9YfovDPYpi+S9oWmT06Eh8pv1Umd/7R/ewuLy9i2fzBnAu5WY+Di8OwA==
+
 "@react-navigation/core@^3.5.1":
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.5.1.tgz#7a2339fca3496979305fb3a8ab88c2ca8d8c214d"
@@ -5393,10 +5398,10 @@ react-native-gesture-handler@^1.4.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-image-crop-picker@0.26.0:
-  version "0.26.0"
-  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.26.0.tgz#4d6da5abface7b5642e20f41f59cdc3a0bfb10db"
-  integrity sha512-FVis/dHoPY5+QFizWMvqPNwhztV50k25lAIhgnX+NbrOcd62/F/m2sxWHX0MQ/No/4iBNAgGB4YnYR6rF6gtEw==
+react-native-image-crop-picker@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.26.1.tgz#3499ff5d4a09c9a9e927eb4f6ff936015ff594f1"
+  integrity sha512-5JdOjQS2V5L/vfb8+jPTUYx4VZPLvhZTyCUjiG0BZCbh+N1L24Kj2C+8EOuWS7xXXHrz5Bpe/eq5lQO1Efc+Yw==
 
 react-native-modalbox@^2.0.0:
   version "2.0.0"
@@ -5826,6 +5831,11 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
+
+rn-viewpager@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/rn-viewpager/-/rn-viewpager-1.2.9.tgz#7f06f898e23b296f3b5be7c98bd9101d94427779"
+  integrity sha512-wN4HlNhjTkrg25qBeEHTJ6TzRGtLu8SpKSZ9/mWcgWHMNr3RT06Zzrky3Tg14PPgaPp//6h02FCcAaQ83VGdgQ==
 
 rsvp@^4.8.4:
   version "4.8.5"

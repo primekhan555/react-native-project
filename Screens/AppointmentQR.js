@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-    Text,
     View,
     StyleSheet,
     ActivityIndicator,
@@ -13,12 +12,12 @@ import base64 from 'react-native-base64';
 
 var screen = Dimensions.get('window');
 export default class AppointmentQR extends Component {
-    static navigationOptions={
-        headerStyle:{
-            backgroundColor:'#ff6666',
-            
+    static navigationOptions = {
+        headerStyle: {
+            backgroundColor: '#ff6666',
+
         },
-        headerTintColor:'#ffffff'
+        headerTintColor: '#ffffff'
     }
     constructor(props) {
         super(props);
@@ -27,15 +26,15 @@ export default class AppointmentQR extends Component {
             medicines: this.props.navigation.getParam('medicines', ''),
             visitDate: this.props.navigation.getParam('visitDate', ''),
             LabTest: this.props.navigation.getParam('LabTest', ''),
-            firstHalf:   'processofmakingpolggfluethe #',
-            secondHalf:  '# Peoplehavesupportsystemof #',
-            thirdHalf:   '# environmentwhichhashrmful #',
-            fourthHalf:  '# Thiscommmaticallydownload #',
-            fifthHalf:   '# thelifesupportsdsfsstemof #',
-            sixthHalf:   '# systemohhashafpohhshtsyst #',
+            firstHalf: 'processofmakingpolggfluethe #',
+            secondHalf: '# Peoplehavesupportsystemof #',
+            thirdHalf: '# environmentwhichhashrmful #',
+            fourthHalf: '# Thiscommmaticallydownload #',
+            fifthHalf: '# thelifesupportsdsfsstemof #',
+            sixthHalf: '# systemohhashafpohhshtsyst #',
             seventhHalf: '# supporshahtsyhhahakshaort #',
-            eighthHalf:  '# commpshahortsshashahysand #',
-            patientInfoScreen : 'PatientInfoScreen',
+            eighthHalf: '# commpshahortsshashahysand #',
+            patientInfoScreen: 'PatientInfoScreen',
             secondsTillNow: '',
             nic: '',
             randomNumber: '',
@@ -125,7 +124,7 @@ export default class AppointmentQR extends Component {
                             logoBackgroundColor="green"
                         />
                     </View>
-                    
+
                 </View>
             );
         }
@@ -136,6 +135,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom:50
+        marginBottom: 50
     },
 });
