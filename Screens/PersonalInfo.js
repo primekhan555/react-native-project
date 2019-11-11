@@ -31,7 +31,7 @@ export default class PersonalInfo extends Component {
             console.log("gcnic"+this.state.gCNIC);
 
         }).then((result) => {
-            const url = 'https://0a50e7d4.ngrok.io/api/Patient/';
+            const url = 'https://cc1c08e5.ngrok.io/api/Patient/';
             var nic = result;
             var CNICS = nic.replace(/['"]+/g, '');
             

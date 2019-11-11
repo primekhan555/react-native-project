@@ -9,8 +9,6 @@ import {
     Picker,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import AppointmentQR from './AppointmentQR';
-
 
 export default class NewAppointment extends Component {
     state = {
@@ -19,9 +17,8 @@ export default class NewAppointment extends Component {
         visitDate: '2019-10-13',
         LabTest: "Not_Taken",
         status: true,
+        transType:'doctor'
     };
-
-
     render() {
         return (
             <View style={{
@@ -116,8 +113,7 @@ export default class NewAppointment extends Component {
                                         this.setState({
                                             visitDate: fullDate
                                         })
-                                    }}
-                                />
+                                    }} />
                             </View>
                             <View style={{
                                 marginTop: 25
@@ -142,13 +138,16 @@ export default class NewAppointment extends Component {
                                 </Picker>
                             </View>
                             <View>
-                                { 
-                                    this.state.LabTest=='Taken'?
-                                    <Text style={{marginTop:20, fontWeight:'bold'}}>Enter Lab Tests below</Text>:null
+                                {
+                                    this.state.LabTest == 'Taken' ?
+                                        <Text style={{
+                                            marginTop: 20,
+                                            fontWeight: 'bold'
+                                        }}>Enter Lab Tests below</Text> : null
                                 }
                             </View>
                             <View>
-                                {  
+                                {
                                     this.state.LabTest == 'Taken' ?
                                         <TextInput
                                             placeholder='Enter Lab Test here'
@@ -157,8 +156,20 @@ export default class NewAppointment extends Component {
                                         /> : null
                                 }
                             </View>
-
                         </View>
+                        <View style={styles.pickerContainer2}>
+                                <Picker style={styles.pickerStyle}
+                                    selectedValue={this.state.transType}
+                                    onValueChange={(itemValue, itemPosition) => {
+                                        this.setState({
+                                            transType: itemValue,
+                                            choosenIndex1: itemPosition
+                                        })
+                                    }}>
+                                    <Picker.Item label="Are you with doctor" value="doctor" />
+                                    <Picker.Item label="Are you on yourself" value="self" />
+                                </Picker>
+                            </View>
                     </ScrollView>
                     <View
                         style={{
@@ -176,12 +187,18 @@ export default class NewAppointment extends Component {
                             justifyContent: 'center',
                         }}
                             onPress={() => {
-                                this.props.navigation.navigate('AppointmentQR', {
-                                    diseaseTypes: this.state.diseaseTypes,
-                                    medicines: this.state.medicines,
-                                    visitDate: this.state.visitDate,
-                                    LabTest: this.state.LabTest
-                                })
+                                if(this.state.transType == 'doctor'){
+                                    this.props.navigation.navigate('AppointmentQR', {
+                                        diseaseTypes: this.state.diseaseTypes,
+                                        medicines: this.state.medicines,
+                                        visitDate: this.state.visitDate,
+                                        LabTest: this.state.LabTest
+                                    })
+                                }
+                                else if(this.state.transType == 'self'){
+                                    
+                                }
+                                
                             }}>
                             <Text
                                 style={{
@@ -193,13 +210,8 @@ export default class NewAppointment extends Component {
                                 }}>Generate</Text>
 
                         </TouchableOpacity>
-
-
                     </View>
-
                 </View>
-
-
             </View >
         );
     }
@@ -214,5 +226,12 @@ const styles = StyleSheet.create({
         height: 40,
         width: "100%",
         justifyContent: 'center',
+    },
+    pickerContainer2: {
+        marginTop: 18,
+        marginLeft:20,
+        marginRight:20,
+        borderWidth: 1,
+        borderColor: 'gray'
     },
 })
