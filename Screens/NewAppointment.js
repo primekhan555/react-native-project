@@ -7,6 +7,7 @@ import {
     Text,
     ScrollView,
     Picker,
+    AsyncStorage,
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
@@ -17,7 +18,8 @@ export default class NewAppointment extends Component {
         visitDate: '2019-10-13',
         LabTest: "Not_Taken",
         status: true,
-        transType:'doctor'
+        transType: 'doctor',
+        CNIC: '',
     };
     render() {
         return (
@@ -140,10 +142,11 @@ export default class NewAppointment extends Component {
                             <View>
                                 {
                                     this.state.LabTest == 'Taken' ?
-                                        <Text style={{
-                                            marginTop: 20,
-                                            fontWeight: 'bold'
-                                        }}>Enter Lab Tests below</Text> : null
+                                        <Text
+                                            style={{
+                                                marginTop: 20,
+                                                fontWeight: 'bold'
+                                            }}>Enter Lab Tests below</Text> : null
                                 }
                             </View>
                             <View>
@@ -158,18 +161,18 @@ export default class NewAppointment extends Component {
                             </View>
                         </View>
                         <View style={styles.pickerContainer2}>
-                                <Picker style={styles.pickerStyle}
-                                    selectedValue={this.state.transType}
-                                    onValueChange={(itemValue, itemPosition) => {
-                                        this.setState({
-                                            transType: itemValue,
-                                            choosenIndex1: itemPosition
-                                        })
-                                    }}>
-                                    <Picker.Item label="Are you with doctor" value="doctor" />
-                                    <Picker.Item label="Are you on yourself" value="self" />
-                                </Picker>
-                            </View>
+                            <Picker style={styles.pickerStyle}
+                                selectedValue={this.state.transType}
+                                onValueChange={(itemValue, itemPosition) => {
+                                    this.setState({
+                                        transType: itemValue,
+                                        choosenIndex1: itemPosition
+                                    })
+                                }}>
+                                <Picker.Item label="Are you with doctor" value="doctor" />
+                                <Picker.Item label="Are you on yourself" value="self" />
+                            </Picker>
+                        </View>
                     </ScrollView>
                     <View
                         style={{
@@ -187,7 +190,7 @@ export default class NewAppointment extends Component {
                             justifyContent: 'center',
                         }}
                             onPress={() => {
-                                if(this.state.transType == 'doctor'){
+                                if (this.state.transType == 'doctor') {
                                     this.props.navigation.navigate('AppointmentQR', {
                                         diseaseTypes: this.state.diseaseTypes,
                                         medicines: this.state.medicines,
@@ -195,10 +198,41 @@ export default class NewAppointment extends Component {
                                         LabTest: this.state.LabTest
                                     })
                                 }
-                                else if(this.state.transType == 'self'){
-                                    
+                                else if (this.state.transType == 'self') {
+                                    AsyncStorage.getItem('CNIC', (err, result) => {
+                                        if (result !== null) {
+                                            this.setState({
+                                                CNIC: result
+                                            })
+                                        }
+                                    }).then(() => {
+                                        let patient = "org.com.mediblockinge1.Patient#";
+                                        let nicNum = this.state.CNIC.replace(/['"]+/g, '');
+                                        console.log(nicNum);
+                                        let total = patient.concat(nicNum);
+                                        let date = this.state.visitDate.concat("T08:03:02.764Z")
+                                        console.log(total)
+                                        let block = {
+                                            "$class": "org.com.mediblockinge1.UnVerifiedDisease",
+                                            "diseaseId": "008",
+                                            "nicNum": nicNum,
+                                            "diseaseType": this.state.diseaseTypes,
+                                            "medicines": this.state.medicines,
+                                            "dateVisited": date,
+                                            "testTaken": this.state.LabTest,
+                                            "testResult": "Null",
+                                            "patient": total
+                                        }
+                                        fetch('https://8376426a.ngrok.io/api/UnVerifiedDisease/', {
+                                            method: 'POST',
+                                            headers: {
+                                                Accept: 'application/json',
+                                                'Content-Type': 'application/json',
+                                            },
+                                            body: JSON.stringify(block),
+                                        })
+                                    })
                                 }
-                                
                             }}>
                             <Text
                                 style={{
@@ -207,7 +241,7 @@ export default class NewAppointment extends Component {
                                     letterSpacing: 0.4,
                                     fontSize: 16,
                                     color: 'white'
-                                }}>Generate</Text>
+                                }}>Submit</Text>
 
                         </TouchableOpacity>
                     </View>
@@ -229,8 +263,8 @@ const styles = StyleSheet.create({
     },
     pickerContainer2: {
         marginTop: 18,
-        marginLeft:20,
-        marginRight:20,
+        marginLeft: 20,
+        marginRight: 20,
         borderWidth: 1,
         borderColor: 'gray'
     },

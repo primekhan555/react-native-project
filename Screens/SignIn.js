@@ -94,7 +94,7 @@ export default class SignIn extends Component {
                                     // }
                                     // else {
                                     // console.log("your pattern is matching")
-                                    const url = 'https://cc1c08e5.ngrok.io/api/Patient/';
+                                    const url = 'https://8376426a.ngrok.io/api/Patient/';
                                     const key = this.state.nic;
                                     const join = url.concat(key);
                                     fetch(join)

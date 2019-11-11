@@ -44,7 +44,7 @@ export default class GetAppointments extends Component {
                 console.log("this is the get appointment " + result);
             }
         });
-        fetch('https://cc1c08e5.ngrok.io/api/VerifiedDisease/')
+        fetch('https://8376426a.ngrok.io/api/VerifiedDisease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -59,7 +59,7 @@ export default class GetAppointments extends Component {
                 console.log("catch is called")
             });
 
-        fetch('https://cc1c08e5.ngrok.io/api/UnVerifiedDisease/')
+        fetch('https://8376426a.ngrok.io/api/UnVerifiedDisease/')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -174,7 +174,7 @@ export default class GetAppointments extends Component {
                 </View>
             )
         }
-        // else {
+        
         return (
             <View style={{ flex: 1, backgroundColor: '#e8ebea' }}>
                 <StatusBar backgroundColor='#ff6666' />
