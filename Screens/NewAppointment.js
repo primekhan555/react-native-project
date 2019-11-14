@@ -223,7 +223,7 @@ export default class NewAppointment extends Component {
                                             "testResult": "Null",
                                             "patient": total
                                         }
-                                        fetch('https://8376426a.ngrok.io/api/UnVerifiedDisease/', {
+                                        fetch('https://a6885600.ngrok.io/api/UnVerifiedDisease/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',

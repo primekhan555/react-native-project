@@ -23,7 +23,7 @@ class FlatListComponentV extends Component {
             <View style={{
                 flex: 1,
                 flexDirection: "column",
-                marginBottom: 9,
+                marginBottom: 9 ,
                 marginTop: 2,
                 height: 150,
                 marginLeft: 10,

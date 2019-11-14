@@ -33,7 +33,7 @@ export default class UN_VerifiedDetail extends Component {
                 })
                 console.log("this is the get appointment " + result);
                 var id = this.state.diseaseId2.replace(/['"]+/g, '');
-                const url = 'https://8376426a.ngrok.io/api/UnVerifiedDisease/';
+                const url = 'https://a6885600.ngrok.io/api/UnVerifiedDisease/';
                 var fullUrl = url.concat(id);
                 fetch(fullUrl)
                     .then((response) => response.json())

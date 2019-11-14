@@ -157,7 +157,7 @@ export default class Information1 extends Component {
                                             "dateofBirth": this.state.dateofBirth,
                                             "bloodType": "B_Positive"
                                         }
-                                        fetch('https://8376426a.ngrok.io/api/Patient/', {
+                                        fetch('https://a6885600.ngrok.io/api/Patient/', {
                                             method: 'POST',
                                             headers: {
                                                 Accept: 'application/json',

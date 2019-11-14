@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { 
-    View, 
-    Text, 
-    TouchableOpacity, 
-    AsyncStorage 
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { withNavigation } from 'react-navigation';
@@ -38,7 +38,7 @@ class FlatlistComponent extends Component {
                     AsyncStorage.setItem('diseaseId', JSON.stringify(diseaseId), () => {
                         this.props.navigation.navigate('UN_VerifiedDetail')
                     })
-                    
+
                 }}
                     style={{
                         position: 'absolute',

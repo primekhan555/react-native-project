@@ -31,7 +31,7 @@ export default class PersonalInfo extends Component {
             console.log("gcnic"+this.state.gCNIC);
 
         }).then((result) => {
-            const url = 'https://8376426a.ngrok.io/api/Patient/';
+            const url = 'https://a6885600.ngrok.io/api/Patient/';
             var nic = result;
             var CNICS = nic.replace(/['"]+/g, '');
             
@@ -45,7 +45,7 @@ export default class PersonalInfo extends Component {
                     })
                 })
                 .then(() => {
-                    const url = 'https://8376426a.ngrok.io/api/PatientPic/';
+                    const url = 'https://a6885600.ngrok.io/api/PatientPic/';
                     var nicc = result;
                     var CNICSs = nicc.replace(/['"]+/g, '');
                     console.log(CNICSs)
@@ -108,7 +108,7 @@ export default class PersonalInfo extends Component {
 
                                     // const owner = classInfo.concat(nic);
                                     // console.log(this.state.cnic)
-                                    const url = 'https://8376426a.ngrok.io/api/PatientPic/';
+                                    const url = 'https://a6885600.ngrok.io/api/PatientPic/';
                                     const joining = url.concat(CNICS);
                                     return fetch(joining)
                                         .then((response) => response.status)
@@ -125,7 +125,7 @@ export default class PersonalInfo extends Component {
                                                 "patientP": fullOwner,
                                             }
                                             if (responceStatus == 200 || responceStatus == 304) {
-                                                const puturl = 'https://8376426a.ngrok.io/api/PatientPic/';
+                                                const puturl = 'https://a6885600.ngrok.io/api/PatientPic/';
                                                 const fullUrl = puturl.concat(CNICS);
                                                 fetch(fullUrl, {
                                                     method: 'PUT',
@@ -137,7 +137,7 @@ export default class PersonalInfo extends Component {
                                                 })
                                             }
                                             else if (responceStatus == 404) {
-                                                return fetch('https://8376426a.ngrok.io/api/PatientPic/', {
+                                                return fetch('https://a6885600.ngrok.io/api/PatientPic/', {
                                                     method: 'POST',
                                                     headers: {
                                                         Accept: 'application/json',

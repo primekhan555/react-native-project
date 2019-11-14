@@ -26,7 +26,7 @@ export default class VerifiedDetail extends Component {
                 })
                 console.log("this is the get appointment " + result);
                 var id = this.state.diseaseId2.replace(/['"]+/g, '');
-                const url = 'https://8376426a.ngrok.io/api/VerifiedDisease/';
+                const url = 'https://a6885600.ngrok.io/api/VerifiedDisease/';
                 var fullUrl=url.concat(id);
                 fetch(fullUrl)
                 .then((response)=>response.json())
